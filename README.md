@@ -53,11 +53,3 @@ This project is licensed under
 
 * MIT license ([LICENSE-MIT](LICENSE) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
 
-
-## Contributing
-
-Want to join us? Check out our [The "Contributing" section of the
-guide][contributing].
-
- 
- 
