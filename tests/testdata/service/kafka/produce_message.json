@@ -1,0 +1,12 @@
+{
+    "key_schema_id": 1,
+    "offsets": [
+        {
+            "error": "Something went wrong",
+            "error_code": 1,
+            "offset": 10,
+            "partition": 1
+        }
+    ],
+    "value_schema_id": 1
+}

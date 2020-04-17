@@ -1,0 +1,17 @@
+{
+    "integration_types": [
+        {
+            "dest_description": "Service metrics",
+            "dest_service_type": "pg",
+            "dest_service_types": [
+                "pg"
+            ],
+            "integration_type": "mirrormaker",
+            "source_description": "Service metrics",
+            "source_service_types": [
+                "pg"
+            ],
+            "user_config_schema": {}
+        }
+    ]
+}

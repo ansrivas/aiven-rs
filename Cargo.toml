@@ -1,0 +1,62 @@
+[package]
+authors = ["Ankur Srivastava <ankur.srivastava@email.de>"]
+categories = ["sdk", "aiven", "cloud", "infra"]
+description = "This is a rust sdk to interact with aiven-cloud apis."
+documentation = "https://docs.rs/aiven-rs"
+edition = "2018"
+homepage = "https://github.com/ansrivas/aiven-rs"
+keywords = ["sdk", "aiven", "cloud", "infra"]
+license = "mit"
+name = "aiven_rs"
+readme = "README.md"
+repository = "https://github.com/ansrivas/aiven-rs"
+version = "0.1.0"
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+]
+
+[dependencies]
+openssl = { version = "0.10", features = ["vendored"], optional = true }
+ 
+env_logger = "0.7.1"
+log = "0.4.8"
+percent-encoding = "2.1.0"
+ 
+serde_json = "1.0.48"
+ 
+thiserror = "1.0.11"
+url = "2.1.1"
+bytes= "0.5.4"
+once_cell= "1.3.1"
+mockito = "0.25.0"
+
+serde_bytes = "0.11"
+
+
+
+[dependencies.reqwest]
+features = ["json"]
+version = "0.10.4"
+
+[dependencies.serde]
+features = ["derive"]
+version = "1.0.104"
+
+[dependencies.tokio]
+features = ["blocking", "macros", "rt-core", "time", "stream", "sync"]
+version = "0.2.18"
+
+[dev-dependencies]
+
+[features]
+static=["openssl"]
+
+[lib]
+name = "aiven_rs"
+path = "src/lib.rs"
+
+# https://deterministic.space/high-performance-rust.html
+[profile.release]
+lto = "fat"
+codegen-units = 1

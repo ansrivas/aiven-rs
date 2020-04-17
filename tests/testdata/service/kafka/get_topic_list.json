@@ -1,0 +1,14 @@
+{
+    "topics": [
+        {
+            "cleanup_policy": "delete",
+            "min_insync_replicas": 2,
+            "partitions": 10,
+            "replication": 1,
+            "retention_bytes": 72,
+            "retention_hours": 72,
+            "state": "ACTIVE",
+            "topic_name": "mytopic"
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+    "tokens": [
+        {
+            "create_time": "2018-06-21T17:06:33.547289Z",
+            "created_manually": false,
+            "currently_active": false,
+            "description": "Integration client Alpha",
+            "expiry_time": "2018-07-11T17:06:33.547289Z",
+            "extend_when_used": true,
+            "last_ip": "68.35.206.54",
+            "last_used_time": "2018-06-21T19:02:49.248358Z",
+            "last_user_agent": "aiven-client/2.0.2-2-g2bddaf0",
+            "last_user_agent_human_readable": "Chrome 67 on Windows 10.0",
+            "max_age_seconds": 86400,
+            "token_prefix": "eb73cd61fe6f"
+        }
+    ]
+}

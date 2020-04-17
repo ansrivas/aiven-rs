@@ -1,0 +1,18 @@
+{
+    "authentication_methods": [
+        {
+            "authentication_method_account_id": "a22ba494e096",
+            "create_time": "2015-10-21T17:06:33.547289Z",
+            "currently_active": false,
+            "delete_time": "2015-10-21T17:06:33.547289Z",
+            "last_used_time": "2015-10-21T17:06:33.547289Z",
+            "method_id": "d7b49512-4a47-4cc3-b77a-14d2a2b3aa13",
+            "name": "Main SAML service",
+            "public_remote_identity": "useremailaddress@gmail.com",
+            "remote_provider_id": "password",
+            "state": "active",
+            "update_time": "2015-10-21T17:06:33.547289Z",
+            "user_email": "jane@example.com"
+        }
+    ]
+}

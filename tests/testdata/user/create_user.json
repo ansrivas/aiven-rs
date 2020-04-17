@@ -1,0 +1,31 @@
+{
+    "state": "active",
+    "token": "LmMGSj31De20Tn/A081gof6Qx/BuJxnMuTw2DAviPOU4RXkAolpLc40vnhgpNpCnd9HJ8R2Yzxd2Uar/yS4=",
+    "user": {
+        "auth": [
+            "2fa-otp"
+        ],
+        "create_time": "2015-10-21T17:06:33.547289Z",
+        "features": {},
+        "invitations": [
+            {
+                "invite_code": "267a08ec4496e809670ba3ce4",
+                "invite_time": "2015-10-21T17:06:33.547289Z",
+                "inviting_user_email": "jane@example.com",
+                "project_name": "myproject"
+            }
+        ],
+        "project_membership": {
+            "ANY": "admin"
+        },
+        "projects": [
+            "myproject"
+        ],
+        "real_name": "Jane Smith",
+        "state": "active",
+        "token_validity_begin": "2015-10-21T17:06:33.547289Z",
+        "user": "jane@example.com",
+        "user_id": "uas3l323kj"
+    },
+    "user_email": "jane@example.com"
+}

@@ -1,0 +1,14 @@
+{
+    "invoices": [
+        {
+            "currency": "USD",
+            "download_cookie": "<cookie>",
+            "invoice_number": "a1ea-52",
+            "period_begin": "2015-10-21T17:06:33.547289Z",
+            "period_end": "2015-10-21T17:06:33.547289Z",
+            "state": "paid",
+            "total_inc_vat": "42.30",
+            "total_vat_zero": "42.30"
+        }
+    ]
+}

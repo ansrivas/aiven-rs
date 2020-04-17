@@ -1,0 +1,10 @@
+{
+    "acl": [
+        {
+            "id": "id-e11v3n",
+            "permission": "readwrite",
+            "topic": "top*",
+            "username": "admin*"
+        }
+    ]
+}

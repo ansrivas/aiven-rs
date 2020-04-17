@@ -1,0 +1,16 @@
+{
+    "elasticsearch_acl_config": {
+        "acls": [
+            {
+                "rules": [
+                    {
+                        "index": "ind*",
+                        "permission": "deny"
+                    }
+                ],
+                "username": "admin*"
+            }
+        ],
+        "enabled": false
+    }
+}

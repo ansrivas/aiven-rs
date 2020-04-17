@@ -1,0 +1,9 @@
+{
+    "service_integration_endpoint": {
+        "endpoint_config": {},
+        "endpoint_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+        "endpoint_name": "Testing Datadog account",
+        "endpoint_type": "datadog",
+        "user_config": {}
+    }
+}

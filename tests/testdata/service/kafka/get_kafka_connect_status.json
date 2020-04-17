@@ -1,0 +1,12 @@
+{
+    "status": {
+        "state": "RUNNING",
+        "tasks": [
+            {
+                "id": 0,
+                "state": "RUNNING",
+                "trace": "org.apache.kafka.common.errors.RecordTooLargeException"
+            }
+        ]
+    }
+}

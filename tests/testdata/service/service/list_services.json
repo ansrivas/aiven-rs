@@ -1,0 +1,139 @@
+{
+    "services": [
+        {
+            "acl": [
+                {
+                    "id": "id-e11v3n",
+                    "permission": "readwrite",
+                    "topic": "top*",
+                    "username": "admin*"
+                }
+            ],
+            "backups": [
+                {
+                    "backup_name": "2016-03-31_0",
+                    "backup_time": "2015-10-21T17:06:33.547289Z",
+                    "data_size": 0
+                }
+            ],
+            "cloud_description": "EU, Germany (Amazon Web Services)",
+            "cloud_name": "aws-eu-central-1",
+            "components": [
+                {
+                    "component": "kafka",
+                    "host": "pg-demoprj.aivencloud.com",
+                    "kafka_authentication_method": "certificate",
+                    "port": 19573,
+                    "route": "dynamic",
+                    "ssl": true,
+                    "usage": "primary"
+                }
+            ],
+            "connection_info": {},
+            "connection_pools": [
+                {
+                    "connection_uri": "postgres://abc:def@10.0.42.1:19573/xyz?sslmode=require",
+                    "database": "testdb",
+                    "pool_mode": "session",
+                    "pool_name": "mypool-x-y-z",
+                    "pool_size": 50,
+                    "username": "my-pool-user"
+                }
+            ],
+            "create_time": "2015-10-21T17:06:33.547289Z",
+            "databases": [],
+            "disk_space_mb": 65536,
+            "features": {},
+            "group_list": [
+                "mygroup"
+            ],
+            "maintenance": {
+                "dow": "sunday",
+                "time": "12:30:00",
+                "updates": [
+                    {
+                        "deadline": "2016-08-12T14:21:25.334013+00:00",
+                        "description": "PostgreSQL upgrade to version 9.5.2",
+                        "start_after": "2016-08-01T12:00:00.123000+00:00",
+                        "start_at": "2016-08-01T12:00:00.123000+00:00"
+                    }
+                ]
+            },
+            "metadata": {},
+            "node_count": 2,
+            "node_cpu_count": 2,
+            "node_memory_mb": 8192,
+            "node_states": [
+                {
+                    "name": "myservice-1",
+                    "progress_updates": [
+                        {
+                            "completed": false,
+                            "current": 3410567,
+                            "max": 7569280,
+                            "min": 0,
+                            "phase": "basebackup",
+                            "unit": "bytes_uncompressed"
+                        }
+                    ],
+                    "state": "syncing_data"
+                }
+            ],
+            "plan": "hobbyist",
+            "project_vpc_id": "1007a317-aa2a-4fb4-9056-93924c5ee46f",
+            "service_integrations": [
+                {
+                    "active": true,
+                    "description": "Send service metrics to InfluxDB service",
+                    "dest_endpoint": "Production Datadog",
+                    "dest_endpoint_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+                    "dest_project": "myproject",
+                    "dest_service": "db123",
+                    "dest_service_type": "pg",
+                    "enabled": true,
+                    "integration_status": {},
+                    "integration_type": "metrics",
+                    "service_integration_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+                    "source_endpoint": "Integration source endpoint",
+                    "source_endpoint_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+                    "source_project": "myproject",
+                    "source_service": "db123",
+                    "source_service_type": "pg",
+                    "user_config": {}
+                }
+            ],
+            "service_name": "db123",
+            "service_type": "pg",
+            "service_type_description": "PostgreSQL Database",
+            "service_uri": "postgres://abc:def@10.0.42.1:19573/xyz?sslmode=require",
+            "service_uri_params": {},
+            "state": "POWEROFF",
+            "termination_protection": true,
+            "topics": [
+                {
+                    "cleanup_policy": "delete",
+                    "min_insync_replicas": 2,
+                    "partitions": 1,
+                    "replication": 1,
+                    "retention_bytes": 72,
+                    "retention_hours": 72,
+                    "state": "ACTIVE",
+                    "topic_name": "mytopic"
+                }
+            ],
+            "update_time": "2015-10-21T17:06:33.547289Z",
+            "user_config": {},
+            "users": [
+                {
+                    "access_cert": "<base64 encoded certificate>",
+                    "access_cert_not_valid_after_time": "2025-01-05T12:32:10Z",
+                    "access_key": "<base64 encoded key>",
+                    "authentication": "caching_sha2_password",
+                    "password": "secret_password",
+                    "type": "primary",
+                    "username": "testuser"
+                }
+            ]
+        }
+    ]
+}

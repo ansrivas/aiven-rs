@@ -1,0 +1,12 @@
+{
+    "alerts": [
+        {
+            "create_time": "2015-10-21T17:06:33.547289Z",
+            "event": "disk_usage",
+            "project_name": "myproject",
+            "service_name": "db123",
+            "service_type": "pg",
+            "severity": "warning"
+        }
+    ]
+}

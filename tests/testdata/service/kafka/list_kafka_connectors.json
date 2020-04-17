@@ -1,0 +1,27 @@
+{
+    "connectors": [
+        {
+            "config": {
+                "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+                "name": "s3-sink-us-east-1"
+            },
+            "name": "elastic-sink",
+            "plugin": {
+                "author": "Debezium",
+                "class": "io.debezium.connector.postgresql.PostgresConnector",
+                "docURL": "https://debezium.io/docs/connectors/postgresql/",
+                "preview": "false",
+                "preview_info": "This connector is in preview, and provided primarily for evaluation and testing purposes",
+                "title": "Debezium PostgreSQL",
+                "type": "source",
+                "version": "1.0"
+            },
+            "tasks": [
+                {
+                    "connector": "elastic-sink",
+                    "task": "0"
+                }
+            ]
+        }
+    ]
+}

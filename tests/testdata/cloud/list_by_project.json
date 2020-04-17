@@ -1,0 +1,11 @@
+{
+    "clouds": [
+        {
+            "cloud_description": "EU, Germany (Amazon Web Services)",
+            "cloud_name": "aws-eu-central-1",
+            "geo_latitude": 52.493774,
+            "geo_longitude": 13.388046,
+            "geo_region": "europe"
+        }
+    ]
+}

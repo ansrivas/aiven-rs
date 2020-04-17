@@ -1,0 +1,12 @@
+{
+    "vpcs": [
+        {
+            "cloud_name": "aws-eu-central-1",
+            "create_time": "2015-10-21T17:06:33.547289Z",
+            "network_cidr": "192.168.6.0/24",
+            "project_vpc_id": "1007a317-aa2a-4fb4-9056-93924c5ee46f",
+            "state": "ACTIVE",
+            "update_time": "2015-10-21T17:06:33.547289Z"
+        }
+    ]
+}

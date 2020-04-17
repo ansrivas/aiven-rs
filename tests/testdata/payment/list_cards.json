@@ -1,0 +1,17 @@
+{
+    "cards": [
+        {
+            "brand": "Visa",
+            "card_id": "9330c086-8781-11e5-89ff-5404a64abfef",
+            "country": "Finland",
+            "country_code": "FI",
+            "exp_month": 1,
+            "exp_year": 2015,
+            "last4": "1234",
+            "name": "John Smith",
+            "projects": [
+                "myproject"
+            ]
+        }
+    ]
+}

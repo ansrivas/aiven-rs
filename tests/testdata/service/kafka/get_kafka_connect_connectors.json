@@ -1,0 +1,14 @@
+{
+    "plugins": [
+        {
+            "author": "Debezium",
+            "class": "io.debezium.connector.postgresql.PostgresConnector",
+            "docURL": "https://debezium.io/docs/connectors/postgresql/",
+            "preview": "false",
+            "preview_info": "This connector is in preview, and provided primarily for evaluation and testing purposes",
+            "title": "Debezium PostgreSQL",
+            "type": "source",
+            "version": "1.0"
+        }
+    ]
+}

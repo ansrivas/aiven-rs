@@ -1,0 +1,11 @@
+{
+    "events": [
+        {
+            "actor": "user@example.com",
+            "event_desc": "Created project myproject",
+            "event_type": "project_create",
+            "service_name": "db123",
+            "time": "2015-10-21T17:06:33.547289Z"
+        }
+    ]
+}

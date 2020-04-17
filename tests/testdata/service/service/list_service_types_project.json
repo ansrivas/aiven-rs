@@ -1,0 +1,23 @@
+{
+    "service_types": {
+        "ANY": {
+            "description": "PostgreSQL Database",
+            "latest_available_version": "1.2.3",
+            "service_plans": [
+                {
+                    "backup_config": {
+                        "interval": 24,
+                        "max_count": 3,
+                        "recovery_mode": "pitr"
+                    },
+                    "max_memory_percent": 70,
+                    "node_count": 3,
+                    "regions": {},
+                    "service_plan": "hobbyist",
+                    "service_type": "pg"
+                }
+            ],
+            "user_config_schema": {}
+        }
+    }
+}

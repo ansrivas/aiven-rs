@@ -1,0 +1,5 @@
+{
+    "method": "otp",
+    "qrcode": "(base64 encoded PNG image)",
+    "uri": "some-url"
+}

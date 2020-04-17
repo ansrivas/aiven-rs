@@ -1,0 +1,11 @@
+{
+    "messages": [
+        {
+            "key": "some-key",
+            "offset": 10,
+            "partition": 1,
+            "topic": "my-topic",
+            "value": "some-value"
+        }
+    ]
+}

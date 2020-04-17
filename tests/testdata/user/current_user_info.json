@@ -1,0 +1,32 @@
+{
+    "user": {
+        "auth": [
+            "2fa-otp"
+        ],
+        "create_time": "2015-10-21T17:06:33.547289Z",
+        "features": {},
+        "intercom": {
+            "app_id": "2cf24db",
+            "hmac": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+        },
+        "invitations": [
+            {
+                "invite_code": "267a08ec4496e809670ba3ce4",
+                "invite_time": "2015-10-21T17:06:33.547289Z",
+                "inviting_user_email": "jane@example.com",
+                "project_name": "myproject"
+            }
+        ],
+        "project_membership": {
+            "ANY": "admin"
+        },
+        "projects": [
+            "myproject"
+        ],
+        "real_name": "Jane Smith",
+        "state": "active",
+        "token_validity_begin": "2015-10-21T17:06:33.547289Z",
+        "user": "jane@example.com",
+        "user_id": "uas3l323kj"
+    }
+}

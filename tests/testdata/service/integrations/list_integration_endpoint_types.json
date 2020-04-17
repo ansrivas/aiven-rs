@@ -1,0 +1,12 @@
+{
+    "endpoint_types": [
+        {
+            "endpoint_type": "datadog",
+            "service_types": [
+                "pg"
+            ],
+            "title": "Service metrics",
+            "user_config_schema": {}
+        }
+    ]
+}

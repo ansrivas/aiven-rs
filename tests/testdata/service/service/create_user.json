@@ -1,0 +1,11 @@
+{
+    "user": {
+        "access_cert": "<base64 encoded certificate>",
+        "access_cert_not_valid_after_time": "2025-01-05T12:32:10Z",
+        "access_key": "<base64 encoded key>",
+        "authentication": "caching_sha2_password",
+        "password": "secret_password",
+        "type": "primary",
+        "username": "testuser"
+    }
+}

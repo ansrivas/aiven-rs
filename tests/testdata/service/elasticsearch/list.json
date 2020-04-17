@@ -1,0 +1,15 @@
+{
+    "indexes": [
+        {
+            "create_time": "2015-10-21T17:06:33.547289Z",
+            "docs": 5019,
+            "health": "green",
+            "index_name": "testindex",
+            "number_of_replicas": 2,
+            "number_of_shards": 2,
+            "read_only_allow_delete": true,
+            "size": 12938127712,
+            "status": "open"
+        }
+    ]
+}

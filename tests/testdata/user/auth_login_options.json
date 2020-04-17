@@ -1,0 +1,8 @@
+[
+    {
+        "action": "google_oauth",
+        "method": "POST",
+        "name": "ACME Corporation corporate login",
+        "redirect_url": "/v1/sso/providername/redirect"
+    }
+]

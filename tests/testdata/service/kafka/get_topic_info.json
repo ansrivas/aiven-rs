@@ -1,0 +1,26 @@
+{
+    "topic": {
+        "cleanup_policy": "delete",
+        "min_insync_replicas": 2,
+        "partitions": [
+            {
+                "consumer_groups": [
+                    {
+                        "group_name": "myconsumergroup",
+                        "offset": 2
+                    }
+                ],
+                "earliest_offset": 2,
+                "isr": 2,
+                "latest_offset": 2,
+                "partition": 0,
+                "size": 2
+            }
+        ],
+        "replication": 1,
+        "retention_bytes": 72,
+        "retention_hours": 72,
+        "state": "ACTIVE",
+        "topic_name": "mytopic"
+    }
+}

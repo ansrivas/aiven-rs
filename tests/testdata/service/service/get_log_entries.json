@@ -1,0 +1,11 @@
+{
+    "first_log_offset": "0",
+    "logs": [
+        {
+            "msg": "Hello, world!",
+            "time": "2015-10-21T17:06:33.547289Z",
+            "unit": "hello.service"
+        }
+    ],
+    "offset": "0"
+}

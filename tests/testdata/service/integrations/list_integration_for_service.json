@@ -1,0 +1,23 @@
+{
+    "service_integrations": [
+        {
+            "active": true,
+            "description": "Send service metrics to InfluxDB service",
+            "dest_endpoint": "Production Datadog",
+            "dest_endpoint_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+            "dest_project": "myproject",
+            "dest_service": "db123",
+            "dest_service_type": "pg",
+            "enabled": true,
+            "integration_status": {},
+            "integration_type": "metrics",
+            "service_integration_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+            "source_endpoint": "Integration source endpoint",
+            "source_endpoint_id": "543e420d-aa63-43e8-b8e8-294a78c600e7",
+            "source_project": "myproject",
+            "source_service": "db123",
+            "source_service_type": "pg",
+            "user_config": {}
+        }
+    ]
+}

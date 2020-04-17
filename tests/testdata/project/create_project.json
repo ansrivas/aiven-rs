@@ -1,0 +1,40 @@
+{
+    "project": {
+        "account_id": "a22ba494e096",
+        "available_credits": "42.30",
+        "billing_address": "ACME Corporation, Main Street 1, Monument Valley, UT",
+        "billing_currency": "USD",
+        "billing_emails": [
+            {
+                "email": "jane@example.com"
+            }
+        ],
+        "billing_extra_text": "Purchase order: PO100018",
+        "card_info": {
+            "brand": "Visa",
+            "card_id": "9330c086-8781-11e5-89ff-5404a64abfef",
+            "country": "Finland",
+            "country_code": "FI",
+            "exp_month": 1,
+            "exp_year": 2015,
+            "last4": "1234",
+            "name": "John Smith",
+            "user_email": "jane@example.com"
+        },
+        "country": "Finland",
+        "country_code": "FI",
+        "default_cloud": "aws-eu-central-1",
+        "estimated_balance": "42.30",
+        "features": {},
+        "payment_method": "card",
+        "project_name": "myproject",
+        "tech_emails": [
+            {
+                "email": "jane@example.com"
+            }
+        ],
+        "tenant_id": "aiven",
+        "trial_expiration_time": "2015-10-21T17:06:33.547289Z",
+        "vat_id": "FI27957435"
+    }
+}

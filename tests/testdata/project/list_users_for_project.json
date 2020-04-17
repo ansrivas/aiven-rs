@@ -1,0 +1,24 @@
+{
+    "invitations": [
+        {
+            "invite_time": "2015-10-21T17:06:33.547289Z",
+            "invited_user_email": "jane@example.com",
+            "inviting_user_email": "jane@example.com",
+            "member_type": "admin"
+        }
+    ],
+    "users": [
+        {
+            "auth": [
+                "2fa-otp"
+            ],
+            "billing_contact": true,
+            "create_time": "2015-10-21T17:06:33.547289Z",
+            "member_type": "admin",
+            "real_name": "Jane Smith",
+            "team_id": "at982374klj",
+            "team_name": "Ops team",
+            "user_email": "jane@example.com"
+        }
+    ]
+}

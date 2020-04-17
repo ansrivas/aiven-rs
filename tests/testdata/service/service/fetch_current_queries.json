@@ -1,0 +1,45 @@
+{
+    "queries": [
+        {
+            "active_channel_subscriptions": 3,
+            "active_database": "6",
+            "active_pattern_matching_channel_subscriptions": 1,
+            "application_name": "rest-api",
+            "backend_start": "2015-10-21T17:06:33.547289Z",
+            "backend_type": "client backend",
+            "backend_xid": "3535229570",
+            "backend_xmin": "3535229570",
+            "client_addr": "10.0.23.2:12737",
+            "client_hostname": "client-hostname-demoprj.aivencloud.com",
+            "client_port": 9817,
+            "connection_age_seconds": 231,
+            "connection_idle_seconds": 5,
+            "datid": 16913,
+            "datname": "default",
+            "flags": [
+                "Monitoring connection"
+            ],
+            "flags_raw": "Xym",
+            "id": "1",
+            "multi_exec_commands": 0,
+            "name": "app-cache-3",
+            "output_buffer": 0,
+            "output_buffer_memory": 2048,
+            "output_list_length": 0,
+            "pid": 1236,
+            "query": "show stats",
+            "query_buffer": 0,
+            "query_buffer_free": 0,
+            "query_duration": 3.1281,
+            "query_start": "2015-10-21T17:06:33.547289Z",
+            "state": "open",
+            "state_change": "2015-10-21T17:06:33.547289Z",
+            "usename": "avnadmin",
+            "usesysid": 16399,
+            "wait_event": "ClientRead",
+            "wait_event_type": "Client",
+            "waiting": false,
+            "xact_start": "2015-10-21T17:06:33.547289Z"
+        }
+    ]
+}

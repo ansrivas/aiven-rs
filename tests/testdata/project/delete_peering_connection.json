@@ -1,0 +1,18 @@
+{
+    "create_time": "2015-10-21T17:06:33.547289Z",
+    "peer_azure_app_id": "adcf7194-d877-4505-a47a-91fefd96e3b8",
+    "peer_azure_tenant_id": "adcf7194-d877-4505-a47a-91fefd96e3b8",
+    "peer_cloud_account": "123456789012",
+    "peer_region": "us-east-1",
+    "peer_resource_group": "my-peered-rg",
+    "peer_vpc": "vpc-2f09a348",
+    "state": "ACTIVE",
+    "state_info": {
+        "message": "Approve peering connection account 12345",
+        "type": "peering-instructions"
+    },
+    "update_time": "2015-10-21T17:06:33.547289Z",
+    "user_peer_network_cidrs": [
+        "192.168.6.0/24"
+    ]
+}
