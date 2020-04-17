@@ -32,18 +32,18 @@ use aiven_rs::{cloud::types::ResClouds, AivenClient};
 
 #[tokio::main]
 async fn main() {
-	env_logger::init();
-    // use std::env;
-    // 
-    // let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read AIVEN_TOKEN");
-    // let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
+  env_logger::init();
+  // use std::env;
+  // 
+  // let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read AIVEN_TOKEN");
+  // let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 
-	let client = AivenClient::new("https://api.aiven.io", "v1");
-	let cloud_api = client.cloud();
-	let output: ResClouds = cloud_api.list_all().await.unwrap();
-	for cloud in &output.clouds {
-		println!("{:?}", cloud.cloud_name);
-	}
+  let client = AivenClient::new("https://api.aiven.io", "v1");
+  let cloud_api = client.cloud();
+  let output: ResClouds = cloud_api.list_all().await.unwrap();
+  for cloud in &output.clouds {
+    println!("{:?}", cloud.cloud_name);
+  }
 }
 ```
 
