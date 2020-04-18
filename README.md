@@ -10,7 +10,7 @@
 
 
 ![Linux](https://github.com/ansrivas/aiven-rs/workflows/Linux/badge.svg)
-[![Version](https://meritbadge.herokuapp.com/aiven_rs)](https://crates.io/crates/aiven_rs)
+[![Crates.io](https://img.shields.io/crates/v/aiven_rs)](https://crates.io/crates/aiven_rs)
 [![Docs.rs](https://docs.rs/aiven_rs/badge.svg)](https://docs.rs/aiven_rs)
 [![codecov](https://codecov.io/gh/ansrivas/aiven-rs/branch/master/graph/badge.svg)](https://codecov.io/gh/ansrivas/aiven-rs)
 
