@@ -9,19 +9,17 @@
 </div>
 
 
-![Linters](https://github.com/ansrivas/aiven-rs/workflows/Linters/badge.svg)
 ![Linux](https://github.com/ansrivas/aiven-rs/workflows/Linux/badge.svg)
-![MacOS](https://github.com/ansrivas/aiven-rs/workflows/MacOS/badge.svg)
-![Windows](https://github.com/ansrivas/aiven-rs/workflows/Windows/badge.svg)
 [![Version](https://meritbadge.herokuapp.com/aiven_rs)](https://crates.io/crates/aiven_rs)
 [![Docs.rs](https://docs.rs/aiven_rs/badge.svg)](https://docs.rs/aiven_rs)
+[![codecov](https://codecov.io/gh/ansrivas/aiven-rs/branch/master/graph/badge.svg)](https://codecov.io/gh/ansrivas/aiven-rs)
 
 </p>
 </div>
 </br>
 
 ## Resources
-
+* Build Status on other [platforms](./BUILD_STATUS.md)
 * Majority of the end points from https://api.aiven.io/doc/ have been implemented as of [17.04.2020]
 * [Documentation](https://docs.rs/aiven-rs)
 * Minimum supported Rust version: 1.42 or later
