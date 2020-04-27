@@ -21,7 +21,6 @@
 // SOFTWARE.
 
 use serde::{Deserialize, Serialize};
-use serde_json;
 
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct ServiceIntegrationEndPoint {

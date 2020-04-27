@@ -23,7 +23,7 @@
 use crate::errors::AivenError;
 use log::debug;
 use percent_encoding::{percent_encode, NON_ALPHANUMERIC};
-use reqwest;
+
 #[derive(Debug, Clone)]
 pub struct HTTPClient {
 	client: reqwest::Client,

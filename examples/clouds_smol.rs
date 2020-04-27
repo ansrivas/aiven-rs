@@ -1,6 +1,6 @@
 // MIT License
 //
-// Copyright (c) 2020 Ankur Srivastava
+// Copyright (c) 2019 Ankur Srivastava
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,39 +20,30 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use crate::response::APIError;
-use std::io;
-use thiserror::Error;
-use url::ParseError;
+use aiven_rs::{cloud::types::ResClouds, AivenClient};
+use smol;
 
-/// Default Error enum which provides translation between std error to different
-/// error types
-#[derive(Error, Debug)]
-pub enum AivenError {
-	// #[error("Failed to get a db-connection from database pool")]
-	// PoolConnError(#[from] PoolError),
-	#[error("HTTP Request error")]
-	ReqwestError(#[from] reqwest::Error),
+fn main() {
+	smol::run(async {
+		env_logger::init();
 
-	#[error("Failed during URL parsing")]
-	URLParseError(#[from] ParseError),
+		// use std::env;
+		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
+		// AIVEN_TOKEN");
+		let client = AivenClient::new("https://api.aiven.io", "v1");
+		let cloud_api = client.cloud();
+		let output: ResClouds = cloud_api.list_all().await.unwrap();
+		for cloud in &output.clouds {
+			println!("{:?}", cloud.cloud_name);
+		}
 
-	#[error("Failed during IO operation")]
-	IOError(#[from] io::Error),
-	//     backtrace: BackTrace
-	// },
-	#[error("Unsupported method ")]
-	UnsupportedMethod,
-
-	#[error("Failed during http request with status_code `{status_code:?}` and text `{text:?}`")]
-	ReqwestErrorWithStatus { status_code: String, text: String },
-
-	#[error("Failed during Serde operation")]
-	SerdeError(#[from] serde_json::Error),
-
-	#[error("Failed during parsing APIResponse")]
-	APIResponseError {
-		errors: Vec<APIError>,
-		message: String,
-	},
+		// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
+		// let output = client.cloud()
+		// 	.list_by_project("some-arbitrary-project")
+		// 	.await
+		// 	.unwrap();
+		// 	for cloud in &output.clouds {
+		// 	println!("{:?}", cloud.cloud_name);
+		// }
+	});
 }
