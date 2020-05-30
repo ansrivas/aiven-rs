@@ -35,7 +35,7 @@ serde_bytes = "0.11"
 
 [dependencies.reqwest]
 features = ["json"]
-version = "0.10.4"
+version = "0.10.6"
 
 [dependencies.serde]
 features = ["derive"]
@@ -44,7 +44,7 @@ version = "1.0.106"
 
 [dev-dependencies.smol]
 features = ["tokio02"]
-version = "0.1.0"
+version = "0.1.10"
 
 [dev-dependencies.tokio]
 features = ["blocking", "macros", "rt-core", "time", "stream", "sync"]
