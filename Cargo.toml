@@ -44,7 +44,7 @@ version = "1.0.106"
 
 [dev-dependencies.smol]
 features = ["tokio02"]
-version = "0.1.10"
+version = "0.2.0"
 
 [dev-dependencies.tokio]
 features = ["blocking", "macros", "rt-core", "time", "stream", "sync"]
