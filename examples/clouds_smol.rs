@@ -21,10 +21,10 @@
 // SOFTWARE.
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
-use smol;
+use blocking::block_on;
 
 fn main() {
-	smol::run(async {
+	block_on(async {
 		env_logger::init();
 
 		// use std::env;
