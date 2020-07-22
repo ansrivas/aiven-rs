@@ -1,3 +1,8 @@
+## 0.2.1
+
+Changes:
+- Fixed the smol example
+
 ## 0.2.0
 
 Changes:
