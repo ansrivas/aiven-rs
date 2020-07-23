@@ -22,9 +22,10 @@
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 use blocking::block_on;
+use smol::Task;
 
 fn main() {
-	block_on(async {
+	block_on(Task::spawn(async {
 		env_logger::init();
 
 		// use std::env;
@@ -45,5 +46,5 @@ fn main() {
 		// 	for cloud in &output.clouds {
 		// 	println!("{:?}", cloud.cloud_name);
 		// }
-	});
+	}));
 }
