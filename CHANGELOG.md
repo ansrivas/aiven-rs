@@ -1,3 +1,8 @@
+## 0.2.2
+
+Changes:
+- Upgraded smol example
+
 ## 0.2.1
 
 Changes:

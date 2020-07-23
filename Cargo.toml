@@ -10,7 +10,7 @@ license = "MIT"
 name = "aiven_rs"
 readme = "README.md"
 repository = "https://github.com/ansrivas/aiven-rs"
-version = "0.2.1"
+version = "0.2.2"
 include = [
     "**/*.rs",
     "Cargo.toml",
@@ -44,14 +44,15 @@ version = "1.0.106"
 
 [dev-dependencies.smol]
 features = ["tokio02"]
-version = "0.2"
+version = "0.3"
 
 [dev-dependencies.tokio]
 features = ["blocking", "macros", "rt-core", "time", "stream", "sync"]
 version = "0.2.21"
 
-[dev-dependencies.blocking]
-version = "0.4.7"
+[dev-dependencies]
+anyhow = "1.0.31"
+
 
 [features]
 static=["openssl"]

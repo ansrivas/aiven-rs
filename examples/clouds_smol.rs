@@ -21,11 +21,11 @@
 // SOFTWARE.
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
-use blocking::block_on;
-use smol::Task;
+use anyhow::{Error, Result};
+use smol;
 
-fn main() {
-	block_on(Task::spawn(async {
+fn main() -> Result<()> {
+	smol::run(async {
 		env_logger::init();
 
 		// use std::env;
@@ -33,7 +33,7 @@ fn main() {
 		// AIVEN_TOKEN");
 		let client = AivenClient::new("https://api.aiven.io", "v1");
 		let cloud_api = client.cloud();
-		let output: ResClouds = cloud_api.list_all().await.unwrap();
+		let output: ResClouds = cloud_api.list_all().await.map_err(Error::msg)?;
 		for cloud in &output.clouds {
 			println!("{:?}", cloud.cloud_name);
 		}
@@ -42,9 +42,10 @@ fn main() {
 		// let output = client.cloud()
 		// 	.list_by_project("some-arbitrary-project")
 		// 	.await
-		// 	.unwrap();
+		// 	.map_err(Error::msg)?
 		// 	for cloud in &output.clouds {
 		// 	println!("{:?}", cloud.cloud_name);
 		// }
-	}));
+		Ok(())
+	})
 }
