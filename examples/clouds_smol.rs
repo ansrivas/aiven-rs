@@ -22,10 +22,11 @@
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 use anyhow::{Error, Result};
+use async_compat::{Compat, CompatExt};
 use smol;
 
 fn main() -> Result<()> {
-	smol::run(async {
+	smol::block_on(Compat::new(async {
 		env_logger::init();
 
 		// use std::env;
@@ -47,5 +48,5 @@ fn main() -> Result<()> {
 		// 	println!("{:?}", cloud.cloud_name);
 		// }
 		Ok(())
-	})
+	}))
 }
