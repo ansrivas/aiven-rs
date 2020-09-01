@@ -10,7 +10,7 @@ license = "MIT"
 name = "aiven_rs"
 readme = "README.md"
 repository = "https://github.com/ansrivas/aiven-rs"
-version = "0.2.2"
+version = "0.2.3"
 include = [
     "**/*.rs",
     "Cargo.toml",
@@ -35,7 +35,7 @@ serde_bytes = "0.11"
 
 [dependencies.reqwest]
 features = ["json"]
-version = "0.10.6"
+version = "0.10.8"
 
 [dependencies.serde]
 features = ["derive"]

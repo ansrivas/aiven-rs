@@ -1,3 +1,7 @@
+## 0.2.3
+Changes:
+- Use async-compat to run reqwest on other executors
+
 ## 0.2.2
 
 Changes:
