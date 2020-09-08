@@ -43,7 +43,7 @@ version = "1.0.106"
 
 
 [dev-dependencies.smol]
-version = "0.4.3"
+version = "1.0.0"
 
 
 
