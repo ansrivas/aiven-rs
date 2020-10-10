@@ -54,5 +54,7 @@ pub enum AivenError {
 	APIResponseError {
 		errors: Vec<APIError>,
 		message: String,
+		more_info: Option<String>,
+		status: Option<i32>,
 	},
 }

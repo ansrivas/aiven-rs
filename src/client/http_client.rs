@@ -59,6 +59,8 @@ macro_rules! make_json_request {
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
+				status: api_response.status,
+				more_info: api_response.more_info,
 			});
 		}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
@@ -82,6 +84,8 @@ macro_rules! make_request {
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
+				status: api_response.status,
+				more_info: api_response.more_info,
 			});
 			}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);

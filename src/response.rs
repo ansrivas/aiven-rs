@@ -32,4 +32,6 @@ pub struct APIError {
 pub struct APIResponse {
 	pub errors: Option<Vec<APIError>>,
 	pub message: Option<String>,
+	pub status: Option<i32>,
+	pub more_info: Option<String>,
 }
