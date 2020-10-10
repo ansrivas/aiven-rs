@@ -41,8 +41,8 @@ pub(crate) fn encode_param(param: &str) -> String {
 macro_rules! make_json_request {
 	($sel:ident, $method:path, $url:expr, $body:ident) => {{
 		use crate::errors::AivenError;
-		use reqwest;
 		use log::debug;
+		use reqwest;
 
 		let response: reqwest::Response = $sel
 			.http_client
@@ -51,9 +51,9 @@ macro_rules! make_json_request {
 			.send()
 			.await?;
 		let status_code = &response.status().as_u16();
-		
+
 		if !(*status_code >= 200 && *status_code <= 300) {
-			debug!("status_code = {}",status_code);
+			debug!("status_code = {}", status_code);
 			debug!("url queried = {}", $url);
 			let api_response: APIResponse = response.json().await?;
 			return Err(AivenError::APIResponseError {
@@ -62,7 +62,7 @@ macro_rules! make_json_request {
 				status: api_response.status,
 				more_info: api_response.more_info,
 			});
-		}
+			}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
 		ret
 		}};

@@ -31,8 +31,8 @@ use crate::{
 		ServiceApi, ServiceElastiSearchApi, ServiceIntegrationsApi, ServiceKafkaApi,
 		ServiceMysqlApi, ServicePostgresApi,
 	},
-	user::UserApi,
 	ticket::TicketApi,
+	user::UserApi,
 };
 
 use reqwest::header::HeaderValue;
