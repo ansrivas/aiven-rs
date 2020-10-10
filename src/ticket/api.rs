@@ -29,7 +29,6 @@ use crate::{
 
 use crate::ticket::types::*;
 use serde::Serialize;
-use std::collections::HashMap;
 pub struct TicketApi {
 	http_client: HTTPClient,
 }
@@ -59,9 +58,7 @@ impl TicketApi {
     /// // severity values can be critical, high or low
 	/// json_body.insert("severity", "critical".to_owned());
 	/// json_body.insert("title", "some short description".to_owned());
-	/// // Optionally if 2FA is enabled
-	/// // json_body.insert("otp", o.into());
-	/// let output = client.ticket().create(&json_body).await?;
+	/// let output = client.ticket().create("project-name", &json_body).await?;
 	/// Ok(())
 	/// }
 	/// ```
@@ -73,6 +70,64 @@ impl TicketApi {
 		let url: &str = &format!("project/{project}/tickets", project=encode_param(project));
 		let response = make_json_request!(self, reqwest::Method::POST, url, json_body)?;
         Ok(response.json().await?)
+    }
+    
+	/// List support tickets.
+	///
+	/// https://api.aiven.io/doc/#operation/ProjectTicketList.
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use std::collections::HashMap;
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let output = client.ticket().get("some-project-name").await?;
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn get(
+        &self,
+        project:&str,
+	) -> Result<Ticket, AivenError> {
+		let url: &str = &format!("project/{project}/tickets", project=encode_param(project));
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+        Ok(response.json().await?)
+    }
+    
+	/// Invite a user to a ticket.
+	///
+	/// https://api.aiven.io/doc/#operation/ProjectTicketInvite.
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use std::collections::HashMap;
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let output = client.ticket().invite_user("some-project-name", "some-ticket-id", "user-email").await?;
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn invite_user(
+        &self,
+        project:&str,
+        ticket_id:&str,
+        user_email:&str,
+	) -> Result<(), AivenError> {
+        let url: &str = &format!("/project/{project}/tickets/{ticket_id}/invite", 
+            project=encode_param(project),
+            ticket_id=encode_param(ticket_id)
+        );
+
+        let json_body = &[("user_email", user_email.to_string())];
+
+		let _response = make_json_request!(self, reqwest::Method::POST, url, json_body)?;
+        Ok(())
 	}
 }
 
@@ -80,6 +135,7 @@ impl TicketApi {
 mod tests {
 	use super::*;
 	use crate::testutil;
+    use std::collections::HashMap;
 
 	#[tokio::test]
 	async fn test_ticket_create() {
@@ -105,6 +161,50 @@ mod tests {
                 );
 			}
 			Err(e) => assert!(false, format!("Error during creating ticket {:?}", e)),
+		}
+    }
+
+
+    #[tokio::test]
+	async fn test_tickets_get() {
+        let client = testutil::prepare_test_client();
+        
+        let project_name = "my-project-name";
+        let query_url: &str = &format!("project/{project}/tickets", project=encode_param(project_name));
+
+		let test_data = testutil::get_test_data("tests/testdata/ticket/all_tickets.json");
+        let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+ 
+		match client.ticket().get(project_name).await {
+			Ok(response) => {
+				assert!(
+					response.user_email == "some-email.de",
+					format!("{:?}", response)
+                );
+			}
+			Err(e) => assert!(false, format!("Error during creating ticket {:?}", e)),
+		}
+    }
+
+
+    #[tokio::test]
+	async fn test_tickets_invite_user() {
+        let client = testutil::prepare_test_client();
+        
+        let project_name = "my-project-name";
+        let ticket_id = "some-unique-id";
+        let query_url: &str = &format!("/project/{project}/tickets/{ticket_id}/invite", 
+                                        project=encode_param(project_name),
+                                        ticket_id=encode_param(ticket_id),
+                                    );
+
+        let _m = testutil::create_mock_server(query_url, "", "POST");
+ 
+		match client.ticket().invite_user(project_name, ticket_id, "some-user-email-to-invite").await {
+			Ok(_response) => {
+				assert!(true);
+			}
+			Err(e) => assert!(false, format!("Error during inviting user to ticket {:?}", e)),
 		}
     }
 }
