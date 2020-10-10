@@ -22,7 +22,7 @@
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 use anyhow::{Error, Result};
-use async_compat::{Compat, CompatExt};
+use async_compat::Compat;
 use smol;
 
 fn main() -> Result<()> {
