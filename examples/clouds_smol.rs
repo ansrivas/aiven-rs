@@ -22,7 +22,7 @@
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 use anyhow::{Error, Result};
-use async_compat::{Compat, CompatExt};
+use async_compat::Compat;
 use smol;
 
 fn main() -> Result<()> {
@@ -39,7 +39,7 @@ fn main() -> Result<()> {
 		// use std::env;
 		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
 		// AIVEN_TOKEN");
-		
+
 		// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 		// let output = client.cloud()
 		// 	.list_by_project("some-arbitrary-project")

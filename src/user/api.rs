@@ -42,6 +42,8 @@ impl UserApi {
 
 	/// Authenticate user and return token for following authorizations
 	///
+	/// https://api.aiven.io/doc/#operation/UserAuth
+	///
 	/// # Examples
 	/// Basic usage:
 	///
@@ -97,7 +99,7 @@ impl UserApi {
 
 	/// Complete one-time password configuration.
 	///
-	/// https://api.aiven.io/doc/#api-User-TwoFactorAuthConfigureOTP
+	/// https://api.aiven.io/doc/#operation/TwoFactorAuthConfigureOTP
 	///
 	/// # Examples
 	/// Basic usage:
@@ -126,7 +128,7 @@ impl UserApi {
 
 	/// Configure two-factor authentication.
 	///
-	/// https://api.aiven.io/doc/#api-User-TwoFactorAuthConfigure.
+	/// https://api.aiven.io/doc/#operation/TwoFactorAuthConfigure.
 	///
 	/// # Examples
 	/// Basic usage:
@@ -154,7 +156,7 @@ impl UserApi {
 
 	/// Configure two-factor authentication.
 	///
-	/// https://api.aiven.io/doc/#api-User-TwoFactorAuthConfigure.
+	/// https://api.aiven.io/doc/#operation/TwoFactorAuthConfigure.
 	///
 	/// # Examples
 	/// Basic usage:
@@ -179,7 +181,7 @@ impl UserApi {
 
 	/// Confirm user password reset.
 	///
-	/// https://api.aiven.io/doc/#api-User-UserPasswordReset
+	/// https://api.aiven.io/doc/#operation/UserPasswordReset
 	///
 	/// # Examples
 	/// Basic usage:
@@ -211,7 +213,7 @@ impl UserApi {
 
 	/// Create a user
 	///
-	/// https://api.aiven.io/doc/#api-User-UserCreate
+	/// https://api.aiven.io/doc/#operation/UserCreate
 	///
 	/// # Examples
 	/// Basic usage:
@@ -238,7 +240,7 @@ impl UserApi {
 
 	/// Create new access token
 	///
-	/// https://api.aiven.io/doc/#api-User-AccessTokenCreate
+	/// https://api.aiven.io/doc/#operation/AccessTokenCreate
 	///
 	/// # Examples
 	/// Basic usage:
@@ -268,7 +270,7 @@ impl UserApi {
 	/// Delete linked authentication method, and revoke all associated access
 	/// tokens
 	///
-	/// https://api.aiven.io/doc/#api-User-UserAuthenticationMethodDelete
+	/// https://api.aiven.io/doc/#operation/UserAuthenticationMethodDelete
 	///
 	/// # Examples
 	/// Basic usage:
@@ -291,7 +293,7 @@ impl UserApi {
 
 	/// Expire all authorization tokens.
 	///
-	/// https://api.aiven.io/doc/#api-User-UserExpireTokens
+	/// https://api.aiven.io/doc/#operation/UserExpireTokens
 	///
 	/// # Examples
 	/// Basic usage:
@@ -328,11 +330,19 @@ impl UserApi {
 
 	/// Get available login options
 	///
+	/// https://api.aiven.io/doc/#operation/UserAuthLoginOptions
+	///
 	/// # Examples
 	/// Basic usage:
 	///
 	/// ```rust,no_run
-	/// // Your example here
+	/// use std::collections::HashMap;
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let output = client.user().expire_auth_tokens().await?;
+	/// Ok(())
+	/// }
 	/// ```
 	pub async fn auth_login_options(
 		&self,
@@ -345,7 +355,7 @@ impl UserApi {
 
 	/// List all valid access tokens
 	///
-	/// https://api.aiven.io/doc/#api-User-AccessTokenList
+	/// https://api.aiven.io/doc/#operation/AccessTokenList
 	///
 	/// # Examples
 	/// Basic usage:
@@ -369,7 +379,7 @@ impl UserApi {
 
 	/// List linked authentication methods
 	///
-	/// https://api.aiven.io/doc/#api-User-UserAuthenticationMethodsList
+	/// https://api.aiven.io/doc/#operation/UserAuthenticationMethodsList
 	///
 	/// # Examples
 	/// Basic usage:
@@ -394,7 +404,7 @@ impl UserApi {
 
 	/// Logout user, removing current authentication token.
 	///
-	/// https://api.aiven.io/doc/#api-User-UserLogout
+	/// https://api.aiven.io/doc/#operation/UserLogout
 	///
 	/// # Examples
 	/// Basic usage:
@@ -419,7 +429,7 @@ impl UserApi {
 
 	/// Request user password reset.
 	///
-	/// https://api.aiven.io/doc/#api-User-UserPasswordResetRequest
+	/// https://api.aiven.io/doc/#operation/UserPasswordResetRequest
 	///
 	/// # Examples
 	/// Basic usage:
@@ -447,11 +457,22 @@ impl UserApi {
 
 	/// Revoke an access token
 	///
+	/// https://api.aiven.io/doc/#operation/AccessTokenRevoke
+	/// 
 	/// # Examples
 	/// Basic usage:
 	///
 	/// ```rust,no_run
-	/// // Your example here
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let response = client
+	///         .user()
+	///         .revoke_access_token("my-token-prefix")
+	///         .await
+	///         .unwrap();
+	/// Ok(())
+	/// }
 	/// ```
 	pub async fn revoke_access_token(&self, token_prefix: &str) -> Result<(), AivenError> {
 		let url = format!(
@@ -464,7 +485,7 @@ impl UserApi {
 
 	/// Update an existing access token.
 	///
-	/// https://api.aiven.io/doc/#api-User-AccessTokenUpdate
+	/// https://api.aiven.io/doc/#operation/AccessTokenUpdate
 	///
 	/// # Examples
 	/// Basic usage:
