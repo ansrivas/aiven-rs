@@ -29,16 +29,17 @@ fn main() -> Result<()> {
 	smol::block_on(Compat::new(async {
 		env_logger::init();
 
-		// use std::env;
-		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
-		// AIVEN_TOKEN");
 		let client = AivenClient::new("https://api.aiven.io", "v1");
 		let cloud_api = client.cloud();
 		let output: ResClouds = cloud_api.list_all().await.map_err(Error::msg)?;
 		for cloud in &output.clouds {
 			println!("{:?}", cloud.cloud_name);
 		}
-
+		
+		// use std::env;
+		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
+		// AIVEN_TOKEN");
+		
 		// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 		// let output = client.cloud()
 		// 	.list_by_project("some-arbitrary-project")
