@@ -54,8 +54,8 @@ pub mod project;
 mod response;
 pub mod service;
 mod testutil;
-pub mod user;
 pub mod ticket;
+pub mod user;
 
 pub mod errors;
 pub use client::AivenClient;
