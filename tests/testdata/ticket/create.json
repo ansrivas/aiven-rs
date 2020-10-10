@@ -1,0 +1,23 @@
+{
+    "more_info": "string",
+    "status": 0,
+    "ticket": {},
+    "create_time": "string",
+    "description": "string",
+    "followers": [
+        {}
+    ],
+    "real_name": "string",
+    "user_email": "some-email.de",
+    "user_id": "string",
+    "following": true,
+    "project_name": "string",
+    "service_name": "string",
+    "severity": "critical",
+    "state": "closed",
+    "submitter": {},
+    "ticket_id": "string",
+    "title": "string",
+    "update_time": "string",
+    "user_real_name": "string"
+}

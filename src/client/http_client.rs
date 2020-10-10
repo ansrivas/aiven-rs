@@ -42,6 +42,7 @@ macro_rules! make_json_request {
 	($sel:ident, $method:path, $url:expr, $body:ident) => {{
 		use crate::errors::AivenError;
 		use reqwest;
+		use log::debug;
 
 		let response: reqwest::Response = $sel
 			.http_client
@@ -50,15 +51,16 @@ macro_rules! make_json_request {
 			.send()
 			.await?;
 		let status_code = &response.status().as_u16();
-		// dbg!(status_code);
-
+		
 		if !(*status_code >= 200 && *status_code <= 300) {
+			debug!("status_code = {}",status_code);
+			debug!("url queried = {}", $url);
 			let api_response: APIResponse = response.json().await?;
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
 			});
-			}
+		}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
 		ret
 		}};
