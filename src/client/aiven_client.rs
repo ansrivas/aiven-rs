@@ -32,6 +32,7 @@ use crate::{
 		ServiceMysqlApi, ServicePostgresApi,
 	},
 	user::UserApi,
+	ticket::TicketApi,
 };
 
 use reqwest::header::HeaderValue;
@@ -333,5 +334,23 @@ impl AivenClient {
 	/// ```
 	pub fn service_postgres(&self) -> ServicePostgresApi {
 		create!(self, ServicePostgresApi)
+	}
+
+	/// Access all customer support ticket related APIs
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let ticket_api = client.ticket();
+	/// // use ticket_api from here on
+	/// Ok(())
+	/// }
+	/// ```
+	pub fn ticket(&self) -> TicketApi {
+		create!(self, TicketApi)
 	}
 }

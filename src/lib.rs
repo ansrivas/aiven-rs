@@ -55,6 +55,7 @@ mod response;
 pub mod service;
 mod testutil;
 pub mod user;
+pub mod ticket;
 
 pub mod errors;
 pub use client::AivenClient;
@@ -81,3 +82,6 @@ pub use service::{
 
 #[doc(hidden)]
 pub use user::UserApi;
+
+#[doc(hidden)]
+pub use ticket::TicketApi;
