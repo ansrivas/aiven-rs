@@ -23,12 +23,26 @@
 use crate::errors::AivenError;
 use log::debug;
 use percent_encoding::{percent_encode, NON_ALPHANUMERIC};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone)]
 pub struct HTTPClient {
 	client: reqwest::Client,
 	base_url: reqwest::Url,
 	version: String,
+}
+
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct APIError {
+	pub more_info: Option<String>,
+	pub status: Option<i32>,
+	pub message: Option<String>,
+}
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct APIResponse {
+	pub errors: Option<Vec<APIError>>,
+	pub message: Option<String>,
 }
 
 /// Percent encode an incoming parameter
@@ -43,6 +57,7 @@ macro_rules! make_json_request {
 		use crate::errors::AivenError;
 		use log::debug;
 		use reqwest;
+		use crate::client::APIResponse;
 
 		let response: reqwest::Response = $sel
 			.http_client
@@ -59,8 +74,6 @@ macro_rules! make_json_request {
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
-				status: api_response.status,
-				more_info: api_response.more_info,
 			});
 			}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
@@ -75,6 +88,7 @@ macro_rules! make_request {
 		use log::debug;
 		use reqwest;
 		let response: reqwest::Response = $sel.http_client.inner($method, $url)?.send().await?;
+		use crate::client::APIResponse;
 
 		let status_code = &response.status().as_u16();
 		debug!("Received status code: {}", status_code);
@@ -84,8 +98,6 @@ macro_rules! make_request {
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
-				status: api_response.status,
-				more_info: api_response.more_info,
 			});
 			}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);

@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use crate::response::APIError;
+use crate::client::APIError;
 use std::io;
 use thiserror::Error;
 use url::ParseError;
@@ -54,7 +54,5 @@ pub enum AivenError {
 	APIResponseError {
 		errors: Vec<APIError>,
 		message: String,
-		more_info: Option<String>,
-		status: Option<i32>,
 	},
 }

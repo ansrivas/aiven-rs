@@ -25,7 +25,6 @@ use crate::{
 	errors::AivenError,
 	key_mgmt::types,
 	make_request,
-	response::APIResponse,
 };
 
 pub struct ProjectKeyManagementApi {

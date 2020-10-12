@@ -24,7 +24,6 @@ use crate::{
 	errors::AivenError,
 	make_json_request, make_request,
 	payment::types,
-	response::APIResponse,
 };
 use serde::Serialize;
 pub struct PaymentApi {

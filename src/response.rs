@@ -20,18 +20,5 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, Debug, Default)]
-pub struct APIError {
-	pub more_info: Option<String>,
-	pub status: Option<i32>,
-	pub message: Option<String>,
-}
-#[derive(Deserialize, Serialize, Debug, Default)]
-pub struct APIResponse {
-	pub errors: Option<Vec<APIError>>,
-	pub message: Option<String>,
-	pub status: Option<i32>,
-	pub more_info: Option<String>,
-}
+

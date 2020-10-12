@@ -25,7 +25,6 @@ use crate::{
 	client::{encode_param, HTTPClient},
 	errors::AivenError,
 	make_json_request, make_request,
-	response::APIResponse,
 };
 use bytes::Bytes;
 use std::collections::HashMap;

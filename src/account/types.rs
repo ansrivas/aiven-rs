@@ -34,7 +34,7 @@ pub struct SamlFieldMapping {
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct AuthenticationMethod {
 	pub account_id: String,
-	pub authentication_method_enabled: String,
+	pub authentication_method_enabled: bool,
 	pub authentication_method_id: String,
 	pub authentication_method_name: String,
 	pub authentication_method_type: String,
@@ -58,50 +58,12 @@ pub struct AuthenticationMethod {
 	pub update_time: String,
 }
 
-// {
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct AuthenticationMethodResponse{
+	pub authentication_method: AuthenticationMethod
+}
 
-//     "authentication_method":
-
-// {
-
-//     "account_id": "string",
-//     "authentication_method_enabled": true,
-//     "authentication_method_id": "string",
-//     "authentication_method_name": "string",
-//     "authentication_method_type": "string",
-//     "auto_join_team_id": "string",
-//     "create_time": "string",
-//     "delete_time": "string",
-//     "saml_acs_url": "string",
-//     "saml_certificate": "string",
-//     "saml_certificate_issuer": "string",
-//     "saml_certificate_not_valid_after": "string",
-//     "saml_certificate_not_valid_before": "string",
-//     "saml_certificate_subject": "string",
-//     "saml_digest_algorithm": "string",
-//     "saml_entity_id": "string",
-//     "saml_field_mapping":
-
-//     {
-//         "email": "string",
-//         "first_name": "string",
-//         "identity": "string",
-//         "last_name": "string",
-//         "real_name": "string"
-//     },
-//     "saml_idp_url": "string",
-//     "saml_metadata_url": "string",
-//     "saml_signature_algorithm": "string",
-//     "saml_variant": "string",
-//     "state": "string",
-//     "update_time": "string"
-
-// },
-// "errors":
-// [
-
-//         {}
-//     ],
-//     "message": "string"
-
-// }
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct AuthenticationMethodsResponse{
+	pub authentication_methods: Vec<AuthenticationMethod>
+}
