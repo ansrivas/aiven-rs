@@ -33,6 +33,7 @@ use std::collections::HashMap;
 pub struct UserApi {
 	http_client: HTTPClient,
 }
+
 impl UserApi {
 	pub(crate) fn new(client: HTTPClient) -> Self {
 		Self {
@@ -154,9 +155,9 @@ impl UserApi {
 		Ok(response.json().await?)
 	}
 
-	/// Configure two-factor authentication.
+	/// Confirm user email address.
 	///
-	/// https://api.aiven.io/doc/#operation/TwoFactorAuthConfigure.
+	/// https://api.aiven.io/doc/#operation/UserVerifyEmail.
 	///
 	/// # Examples
 	/// Basic usage:
@@ -315,11 +316,19 @@ impl UserApi {
 
 	/// Get information for the current session's user
 	///
+	/// https://api.aiven.io/doc/#operation/UserInfo
+	///
 	/// # Examples
 	/// Basic usage:
 	///
 	/// ```rust,no_run
-	/// // Your example here
+	/// use std::collections::HashMap;
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let output = client.user().info().await?;
+	/// Ok(())
+	/// }
 	/// ```
 	pub async fn info(&self) -> Result<UserInfo, AivenError> {
 		let url = "me";
@@ -458,7 +467,7 @@ impl UserApi {
 	/// Revoke an access token
 	///
 	/// https://api.aiven.io/doc/#operation/AccessTokenRevoke
-	/// 
+	///
 	/// # Examples
 	/// Basic usage:
 	///

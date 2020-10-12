@@ -54,6 +54,7 @@ pub mod project;
 mod response;
 pub mod service;
 mod testutil;
+pub mod ticket;
 pub mod user;
 
 pub mod errors;
@@ -81,3 +82,6 @@ pub use service::{
 
 #[doc(hidden)]
 pub use user::UserApi;
+
+#[doc(hidden)]
+pub use ticket::TicketApi;

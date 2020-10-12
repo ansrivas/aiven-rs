@@ -21,17 +21,51 @@
 // SOFTWARE.
 
 use serde::{Deserialize, Serialize};
+use serde_json;
+use std::collections::HashMap;
 
 #[derive(Deserialize, Serialize, Debug, Default)]
-pub struct APIError {
-	pub more_info: Option<String>,
-	pub status: Option<i32>,
-	pub message: Option<String>,
+pub struct Ticket {
+	pub more_info: String,
+	pub status: i32,
+	pub ticket: serde_json::Value,
+	pub create_time: String,
+	pub description: String,
+	pub followers: Vec<serde_json::Value>,
+	pub real_name: String,
+	pub user_email: String,
+	pub user_id: String,
+	pub following: bool,
+	pub project_name: String,
+	pub service_name: String,
+	pub severity: String,
+	pub state: String,
+	pub submitter: serde_json::Value,
+	pub ticket_id: String,
+	pub title: String,
+	pub update_time: String,
+	pub user_real_name: String,
 }
+
 #[derive(Deserialize, Serialize, Debug, Default)]
-pub struct APIResponse {
-	pub errors: Option<Vec<APIError>>,
-	pub message: Option<String>,
-	pub status: Option<i32>,
-	pub more_info: Option<String>,
+pub struct TicketList {
+	pub more_info: String,
+	pub status: i32,
+	pub ticket: Vec<serde_json::Value>,
+	pub create_time: String,
+	pub description: String,
+	pub followers: Vec<serde_json::Value>,
+	pub real_name: String,
+	pub user_email: String,
+	pub user_id: String,
+	pub following: bool,
+	pub project_name: String,
+	pub service_name: String,
+	pub severity: String,
+	pub state: String,
+	pub submitter: serde_json::Value,
+	pub ticket_id: String,
+	pub title: String,
+	pub update_time: String,
+	pub user_real_name: String,
 }
