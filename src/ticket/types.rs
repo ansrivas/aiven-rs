@@ -21,8 +21,6 @@
 // SOFTWARE.
 
 use serde::{Deserialize, Serialize};
-use serde_json;
-use std::collections::HashMap;
 
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct Ticket {
