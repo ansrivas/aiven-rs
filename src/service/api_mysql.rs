@@ -24,7 +24,6 @@ use crate::{
 	client::{encode_param, HTTPClient},
 	errors::AivenError,
 	make_json_request,
-	response::APIResponse,
 	service::types_mysql::*,
 };
 use serde::Serialize;

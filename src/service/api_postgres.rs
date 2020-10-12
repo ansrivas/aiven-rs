@@ -23,7 +23,6 @@ use crate::{
 	client::{encode_param, HTTPClient},
 	errors::AivenError,
 	make_json_request, make_request,
-	response::APIResponse,
 	service::types_postgres::*,
 };
 use serde::Serialize;

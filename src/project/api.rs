@@ -25,7 +25,6 @@ use crate::{
 	errors::AivenError,
 	make_json_request, make_request,
 	project::types,
-	response::APIResponse,
 };
 use serde::Serialize;
 use std::collections::HashMap;

@@ -59,8 +59,7 @@ pub mod ticket;
 pub mod user;
 
 pub mod errors;
-pub use client::AivenClient;
-pub use response::{APIError, APIResponse};
+pub use client::{AivenClient, APIError};
 
 #[doc(hidden)]
 pub use billing::ProjectBillingApi;

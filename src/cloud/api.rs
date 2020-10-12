@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use crate::{client::HTTPClient, errors::AivenError, make_request, response::APIResponse};
+use crate::{client::HTTPClient, errors::AivenError, make_request};
 
 use crate::cloud::types;
 pub struct CloudApi {

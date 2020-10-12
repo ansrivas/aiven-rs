@@ -33,6 +33,7 @@ use crate::{
 	},
 	ticket::TicketApi,
 	user::UserApi,
+	account::AccountApi,
 };
 
 use reqwest::header::HeaderValue;
@@ -352,5 +353,23 @@ impl AivenClient {
 	/// ```
 	pub fn ticket(&self) -> TicketApi {
 		create!(self, TicketApi)
+	}
+
+	/// Access all account related APIs
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let ticket_api = client.account();
+	/// // use account_api from here on
+	/// Ok(())
+	/// }
+	/// ```
+	pub fn account(&self) -> AccountApi {
+		create!(self, AccountApi)
 	}
 }
