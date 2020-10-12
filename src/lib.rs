@@ -47,6 +47,7 @@ pub mod billing;
 mod client;
 mod customdeser;
 
+pub mod account;
 pub mod cloud;
 pub mod key_mgmt;
 pub mod payment;
@@ -85,3 +86,6 @@ pub use user::UserApi;
 
 #[doc(hidden)]
 pub use ticket::TicketApi;
+
+#[doc(hidden)]
+pub use account::AccountApi;
