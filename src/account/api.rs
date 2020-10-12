@@ -28,6 +28,7 @@ use crate::{
 	response::APIResponse,
 };
 use bytes::Bytes;
+use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 
 pub struct AccountApi {
@@ -39,5 +40,38 @@ impl AccountApi {
 		Self {
 			http_client: client,
 		}
-    }
+	}
+
+	/// Create a new authentication method
+	///
+	/// https://api.aiven.io/doc/#operation/AccountAuthenticationMethodCreate
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .account()
+	///         .create_new_auth_method("my-project").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn create_new_auth_method<T: Serialize + ?Sized>(
+		&self,
+		account_id: &str,
+		json_body: &T,
+	) -> Result<serde_json::Value, AivenError> {
+		let url = &format!(
+			"account/{account_id}/authentication",
+			account_id = account_id
+		);
+		let response = make_json_request!(self, reqwest::Method::POST, url, json_body)?;
+		Ok(response.json().await?)
+	}
 }
