@@ -59,11 +59,11 @@ pub struct AuthenticationMethod {
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
-pub struct AuthenticationMethodResponse{
-	pub authentication_method: AuthenticationMethod
+pub struct AuthenticationMethodResponse {
+	pub authentication_method: AuthenticationMethod,
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
-pub struct AuthenticationMethodsResponse{
-	pub authentication_methods: Vec<AuthenticationMethod>
+pub struct AuthenticationMethodsResponse {
+	pub authentication_methods: Vec<AuthenticationMethod>,
 }

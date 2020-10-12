@@ -32,7 +32,6 @@ pub struct HTTPClient {
 	version: String,
 }
 
-
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct APIError {
 	pub more_info: Option<String>,
@@ -54,10 +53,9 @@ pub(crate) fn encode_param(param: &str) -> String {
 #[macro_export]
 macro_rules! make_json_request {
 	($sel:ident, $method:path, $url:expr, $body:ident) => {{
-		use crate::errors::AivenError;
+		use crate::{client::APIResponse, errors::AivenError};
 		use log::debug;
 		use reqwest;
-		use crate::client::APIResponse;
 
 		let response: reqwest::Response = $sel
 			.http_client

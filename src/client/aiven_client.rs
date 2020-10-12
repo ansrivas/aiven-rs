@@ -21,6 +21,7 @@
 // SOFTWARE.
 
 use crate::{
+	account::AccountApi,
 	billing::ProjectBillingApi,
 	client::HTTPClient,
 	cloud::CloudApi,
@@ -33,7 +34,6 @@ use crate::{
 	},
 	ticket::TicketApi,
 	user::UserApi,
-	account::AccountApi,
 };
 
 use reqwest::header::HeaderValue;
