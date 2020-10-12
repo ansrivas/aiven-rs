@@ -35,11 +35,11 @@ fn main() -> Result<()> {
 		for cloud in &output.clouds {
 			println!("{:?}", cloud.cloud_name);
 		}
-		
+
 		// use std::env;
 		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
 		// AIVEN_TOKEN");
-		
+
 		// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 		// let output = client.cloud()
 		// 	.list_by_project("some-arbitrary-project")
