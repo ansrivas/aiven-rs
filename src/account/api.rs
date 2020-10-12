@@ -54,7 +54,7 @@ impl AccountApi {
 	/// # #[tokio::main]
 	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
 	/// use std::collections::HashMap;
-	/// 
+	///
 	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
 	/// let mut json = HashMap::new();
 	/// json.insert("account_id", "some-account-id");
@@ -93,7 +93,7 @@ impl AccountApi {
 	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
 	///
 	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
-	/// 
+	///
 	/// // check rest of the json body from the API doc above
 	/// let response = client
 	///         .account()
@@ -123,8 +123,7 @@ mod tests {
 		let client = testutil::prepare_test_client();
 		let query_url = "/account/someaccountid/authentication";
 
-		let test_data =
-			testutil::get_test_data("tests/testdata/account/new_auth_method.json");
+		let test_data = testutil::get_test_data("tests/testdata/account/new_auth_method.json");
 		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
 
 		let data = &[("authentication_method_name", "some-method")];
@@ -143,15 +142,10 @@ mod tests {
 		let client = testutil::prepare_test_client();
 		let query_url = "/account/someaccountid/authentication";
 
-		let test_data =
-			testutil::get_test_data("tests/testdata/account/auth_methods.json");
+		let test_data = testutil::get_test_data("tests/testdata/account/auth_methods.json");
 		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
 
-		match client
-			.account()
-			.list_auth_methods("someaccountid")
-			.await
-		{
+		match client.account().list_auth_methods("someaccountid").await {
 			Ok(resp) => assert!(resp.authentication_methods[0].account_id == "string"),
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
