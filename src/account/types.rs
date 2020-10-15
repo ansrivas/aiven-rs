@@ -67,3 +67,18 @@ pub struct AuthenticationMethodResponse {
 pub struct AuthenticationMethodsResponse {
 	pub authentication_methods: Vec<AuthenticationMethod>,
 }
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct AccountCreateResponse {
+	pub account: Account,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Account {
+	pub account_id : String,
+    pub account_name : String,
+    pub account_owner_team_id : String,
+    pub create_time : String,
+    pub is_account_owner : bool,
+    pub update_time : String
+}
