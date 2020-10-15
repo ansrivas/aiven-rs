@@ -75,10 +75,10 @@ pub struct AccountCreateResponse {
 
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct Account {
-	pub account_id : String,
-    pub account_name : String,
-    pub account_owner_team_id : String,
-    pub create_time : String,
-    pub is_account_owner : bool,
-    pub update_time : String
+	pub account_id: String,
+	pub account_name: String,
+	pub account_owner_team_id: String,
+	pub create_time: String,
+	pub is_account_owner: bool,
+	pub update_time: String,
 }

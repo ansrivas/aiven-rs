@@ -185,7 +185,6 @@ impl AccountApi {
 		Ok(response.json().await?)
 	}
 
-
 	/// Update authentication method
 	///
 	/// https://api.aiven.io/doc/#operation/AccountAuthenticationMethodUpdate
@@ -221,7 +220,6 @@ impl AccountApi {
 		let response = make_request!(self, reqwest::Method::PUT, url)?;
 		Ok(response.json().await?)
 	}
-	
 
 	/// Create a new account
 	///
@@ -258,8 +256,10 @@ impl AccountApi {
 
 #[cfg(test)]
 mod tests {
-	use crate::client::{encode_param, HTTPClient};
-	use crate::testutil;
+	use crate::{
+		client::{encode_param, HTTPClient},
+		testutil,
+	};
 
 	#[tokio::test]
 	async fn test_account_create_new_auth_method() {
@@ -305,7 +305,11 @@ mod tests {
 
 		let _m = testutil::create_mock_server(&query_url, "", "DELETE");
 
-		match client.account().delete_auth_method("account_id", "someid").await {
+		match client
+			.account()
+			.delete_auth_method("account_id", "someid")
+			.await
+		{
 			Ok(_) => assert!(true),
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
@@ -323,8 +327,14 @@ mod tests {
 		let test_data = testutil::get_test_data("tests/testdata/account/get_auth_details.json");
 		let _m = testutil::create_mock_server(&query_url, &test_data, "GET");
 
-		match client.account().get_auth_method_details("account_id", "someid").await {
-			Ok(response) => assert!(response.authentication_method.account_id == "unique-account-id"),
+		match client
+			.account()
+			.get_auth_method_details("account_id", "someid")
+			.await
+		{
+			Ok(response) => {
+				assert!(response.authentication_method.account_id == "unique-account-id")
+			}
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
 	}
@@ -341,8 +351,14 @@ mod tests {
 		let test_data = testutil::get_test_data("tests/testdata/account/update_auth_method.json");
 		let _m = testutil::create_mock_server(&query_url, &test_data, "PUT");
 
-		match client.account().update_auth_method("account_id", "someid").await {
-			Ok(response) => assert!(response.authentication_method.account_id == "updated-account-id"),
+		match client
+			.account()
+			.update_auth_method("account_id", "someid")
+			.await
+		{
+			Ok(response) => {
+				assert!(response.authentication_method.account_id == "updated-account-id")
+			}
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
 	}
@@ -360,5 +376,4 @@ mod tests {
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
 	}
-
 }
