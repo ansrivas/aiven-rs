@@ -1,0 +1,12 @@
+{
+  "accounts": [
+    {
+      "account_id": "string",
+      "account_name": "string",
+      "account_owner_team_id": "string",
+      "create_time": "string",
+      "is_account_owner": true,
+      "update_time": "string"
+    }
+  ]
+}

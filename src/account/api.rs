@@ -246,10 +246,199 @@ impl AccountApi {
 	pub async fn create_new(
 		&self,
 		account_name: &str,
-	) -> Result<types::AccountCreateResponse, AivenError> {
+	) -> Result<types::AccountResponse, AivenError> {
 		let url = "account";
 		let json_data = &[("account_name", account_name)];
 		let response = make_json_request!(self, reqwest::Method::POST, url, json_data)?;
+		Ok(response.json().await?)
+	}
+
+	/// Create a new account
+	///
+	/// https://api.aiven.io/doc/#operation/AccountList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// // check rest of the json body from the API doc above
+	/// let response = client
+	///         .account()
+	///         .list_accessible_accounts().await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn list_accessible_accounts(
+		&self,
+	) -> Result<types::Accounts, AivenError> {
+		let url = "account";
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Delete empty account
+	///
+	/// https://api.aiven.io/doc/#operation/AccountDelete
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// // check rest of the json body from the API doc above
+	/// let response = client
+	///         .account()
+	///         .delete_account("my-account-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn delete_account(
+		&self,
+		account_id: &str,
+	) -> Result<(), AivenError> {
+		let url = format!("account/{account_id}",account_id=encode_param(account_id));
+		let _response = make_request!(self, reqwest::Method::DELETE, &url)?;
+		Ok(())
+	}
+
+	/// Get account details
+	///
+	/// https://api.aiven.io/doc/#operation/AccountGet
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// // check rest of the json body from the API doc above
+	/// let response = client
+	///         .account()
+	///         .get_details("account-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn get_details(
+		&self,
+		account_id: &str,
+	) -> Result<types::AccountResponse, AivenError> {
+		let url = format!("account/{account_id}", account_id=encode_param(account_id));
+		let response = make_request!(self, reqwest::Method::GET, &url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Get account details
+	///
+	/// https://api.aiven.io/doc/#operation/AccountGet
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// // check rest of the json body from the API doc above
+	/// let json_body = json!({
+    ///		"account_name": "some-account-name"
+	/// });
+	/// let response = client
+	///         .account()
+	///         .update_account("my-account-id", &json_body).await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn update_account<T:?Sized + Serialize>(
+		&self,
+		account_id: &str,
+		json_body: &T,
+	) -> Result<types::AccountResponse, AivenError> {
+		let url = format!("account/{account_id}", account_id=encode_param(account_id));
+		let response = make_json_request!(self, reqwest::Method::PUT, &url, json_body)?;
+		Ok(response.json().await?)
+	}
+
+	/// List account events
+	///
+	/// https://api.aiven.io/doc/#operation/AccountEventList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// // check rest of the json body from the API doc above
+	/// let response = client
+	///         .account()
+	///         .list_events("my-account-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn list_events(
+		&self,
+		account_id: &str,
+	) -> Result<types::Events, AivenError> {
+		let url = format!("account/{account_id}/events", account_id=encode_param(account_id));
+		let response = make_request!(self, reqwest::Method::GET, &url)?;
+		Ok(response.json().await?)
+	}
+
+	/// List projects belonging to account
+	///
+	/// https://api.aiven.io/doc/#operation/AccountProjectsList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// // check rest of the json body from the API doc above
+	/// let response = client
+	///         .account()
+	///         .list_projects("my-account-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn list_projects(
+		&self,
+		account_id: &str,
+	) -> Result<types::Projects, AivenError> {
+		let url = format!("account/{account_id}/projects", account_id=encode_param(account_id));
+		let response = make_request!(self, reqwest::Method::GET, &url)?;
 		Ok(response.json().await?)
 	}
 }
@@ -260,6 +449,7 @@ mod tests {
 		client::{encode_param, HTTPClient},
 		testutil,
 	};
+	use serde_json::json;
 
 	#[tokio::test]
 	async fn test_account_create_new_auth_method() {
@@ -376,4 +566,93 @@ mod tests {
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
 	}
+
+	#[tokio::test]
+	async fn test_account_list_accessible_accounts() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/account";
+
+		let test_data = testutil::get_test_data("tests/testdata/account/list_accessible_accounts.json");
+		let _m = testutil::create_mock_server(&query_url, &test_data, "GET");
+
+		match client.account().list_accessible_accounts().await {
+			Ok(response) => assert!(response.accounts.len() > 0 ),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_account_delete_account() {
+		let client = testutil::prepare_test_client();
+		let query_url = format!("/account/{}", encode_param("some-account-to-delete"));
+
+		let _m = testutil::create_mock_server(&query_url, "", "DELETE");
+
+		match client.account().delete_account("some-account-to-delete").await {
+			Ok(_response) => assert!(true ),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+
+	#[tokio::test]
+	async fn test_account_get_details() {
+		let client = testutil::prepare_test_client();
+		let query_url = format!("/account/{account_id}", account_id=encode_param("some-account-details"));
+
+		let test_data = testutil::get_test_data("tests/testdata/account/get_details.json");
+		let _m = testutil::create_mock_server(&query_url, &test_data, "GET");
+
+		match client.account().get_details("some-account-details").await {
+			Ok(response) => assert!(response.account.account_name =="some-account-name" ),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+
+	#[tokio::test]
+	async fn test_account_update_account() {
+		let client = testutil::prepare_test_client();
+		let query_url = format!("/account/{account_id}", account_id=encode_param("some-account-id"));
+
+		let test_data = testutil::get_test_data("tests/testdata/account/update_account.json");
+		let _m = testutil::create_mock_server(&query_url, &test_data, "PUT");
+
+		let body = json!({"account_name": "updated_name"});
+		match client.account().update_account("some-account-id", &body).await {
+			Ok(response) => assert!(response.account.account_name =="updated_name" ),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_account_list_events() {
+		let client = testutil::prepare_test_client();
+		let query_url = format!("/account/{account_id}/events", account_id=encode_param("some-account-id"));
+
+		let test_data = testutil::get_test_data("tests/testdata/account/list_events.json");
+		let _m = testutil::create_mock_server(&query_url, &test_data, "GET");
+
+		match client.account().list_events("some-account-id").await {
+			Ok(response) => assert!(response.events[0].account_id =="unique-account-id" ),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+
+
+	#[tokio::test]
+	async fn test_account_list_projects() {
+		let client = testutil::prepare_test_client();
+		let query_url = format!("/account/{account_id}/projects", account_id=encode_param("some-account-id"));
+
+		let test_data = testutil::get_test_data("tests/testdata/account/list_projects.json");
+		let _m = testutil::create_mock_server(&query_url, &test_data, "GET");
+
+		match client.account().list_projects("some-account-id").await {
+			Ok(response) => assert!(response.projects[0].account_id =="unique-account-id" ),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
 }

@@ -1,0 +1,14 @@
+{
+  "events": [
+    {
+      "account_id": "unique-account-id",
+      "action_description": "string",
+      "action_type": "string",
+      "actor": "string",
+      "actor_user_id": "string",
+      "create_time": "string",
+      "log_entry_id": 0,
+      "team_id": "string"
+    }
+  ]
+}
