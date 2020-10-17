@@ -1,0 +1,12 @@
+{
+  "teams": [
+    {
+      "account_id": "unique-account-id",
+      "create_time": "string",
+      "team_id": "string",
+      "team_name": "string",
+      "team_type": "string",
+      "update_time": "string"
+    }
+  ]
+}
