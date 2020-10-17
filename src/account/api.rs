@@ -935,9 +935,9 @@ impl AccountApi {
 	/// let response = client
 	///         .account()
 	///         .update_team_project_association("my-account-id",
-	/// 				"team_id",
-	/// 				"project",
-	/// 				 &payload).await?;
+	///          "team_id",
+	///          "project",
+	///          &payload).await?;
 	/// # Ok(())
 	/// # }
 	/// ```
