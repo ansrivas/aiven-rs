@@ -1,0 +1,8 @@
+{
+  "projects": [
+    {
+      "project_name": "my-team-project-one",
+      "team_type": "string"
+    }
+  ]
+}
