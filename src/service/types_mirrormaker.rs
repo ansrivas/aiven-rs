@@ -22,10 +22,25 @@
 
 // use crate::customdeser;
 use serde::{Deserialize, Serialize};
-// #[derive(Deserialize, Serialize, Debug, Default)]
-// pub struct AclDefinition {
-// 	pub id: String,
-// 	pub permission: String,
-// 	pub topic: String,
-// 	pub username: String,
-// }
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Topic {
+	pub blacklist: serde_json::Value,
+}
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ReplicationFlow {
+	pub enabled: bool,
+	pub source_cluster: String,
+	pub target_cluster: String,
+	pub topics: Vec<Topic>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ReplicationFlowResponse {
+	pub replication_flow: ReplicationFlow,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ReplicationFlows {
+	pub replication_flows: Vec<ReplicationFlow>,
+}

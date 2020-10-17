@@ -1,0 +1,14 @@
+{
+  "replication_flow": {
+    "enabled": true,
+    "source_cluster": "source-cluster",
+    "target_cluster": "string",
+    "topics": [
+      {
+        "blacklist": [
+          {}
+        ]
+      }
+    ]
+  }
+}

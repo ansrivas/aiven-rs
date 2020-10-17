@@ -17,6 +17,7 @@ pub use api_postgres::ServicePostgresApi;
 pub mod types_elasticsearch;
 pub mod types_integrations;
 pub mod types_kafka;
+pub mod types_mirrormaker;
 pub mod types_mysql;
 pub mod types_postgres;
 pub mod types_service;
