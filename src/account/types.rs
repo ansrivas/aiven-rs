@@ -163,11 +163,11 @@ pub struct Projects {
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct Team {
 	pub account_id: String,
-	pub create_time: String,
+	pub create_time: Option<String>,
+	pub update_time: Option<String>,
 	pub team_id: String,
 	pub team_name: String,
-	pub team_type: String,
-	pub update_time: String,
+	pub team_type: Option<String>,
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
@@ -178,4 +178,86 @@ pub struct TeamResponse {
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct Teams {
 	pub teams: Vec<Team>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Invite {
+	pub account_id: String,
+	pub account_name: String,
+	pub create_time: String,
+	pub invited_by_user_email: String,
+	pub team_id: String,
+	pub team_name: String,
+	pub user_email: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Invites {
+	pub account_invites: Vec<Invite>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct UserEmail {
+	pub user_email: String,
+}
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct InviteDetails {
+	pub invite_details: UserEmail,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Member {
+	pub create_time: String,
+	pub real_name: String,
+	pub team_id: String,
+	pub team_name: String,
+	pub update_time: String,
+	pub user_email: String,
+	pub user_id: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Members {
+	pub members: Vec<Member>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct TeamProject {
+	pub project_name: String,
+	pub team_type: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct TeamProjects {
+	pub projects: Vec<TeamProject>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct UserProject {
+	pub access_type: String,
+	pub account_id: String,
+	pub create_time: String,
+	pub member_type: String,
+	pub project_name: String,
+	pub real_name: String,
+	pub team_id: String,
+	pub team_name: String,
+	pub user_email: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct UserProjects {
+	pub user_projects: Vec<UserProject>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct User {
+	pub real_name: String,
+	pub user_email: String,
+	pub user_id: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Users {
+	pub users: Vec<User>,
 }

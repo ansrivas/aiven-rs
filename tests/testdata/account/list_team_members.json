@@ -1,0 +1,13 @@
+{
+  "members": [
+    {
+      "create_time": "timestamp",
+      "real_name": "string",
+      "team_id": "string",
+      "team_name": "string",
+      "update_time": "string",
+      "user_email": "string",
+      "user_id": "string"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "teams": [
+    {
+      "account_id": "string",
+      "account_name": "string",
+      "team_id": "unique-team-id",
+      "team_name": "string"
+    }
+  ]
+}

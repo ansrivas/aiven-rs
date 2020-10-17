@@ -1,0 +1,15 @@
+{
+  "user_projects": [
+    {
+      "access_type": "string",
+      "account_id": "string",
+      "create_time": "string",
+      "member_type": "string",
+      "project_name": "my-user-project-one",
+      "real_name": "string",
+      "team_id": "string",
+      "team_name": "string",
+      "user_email": "string"
+    }
+  ]
+}
