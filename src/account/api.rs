@@ -26,8 +26,7 @@ use crate::{
 	errors::AivenError,
 	make_json_request, make_request,
 };
-use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
+use serde::Serialize;
 
 pub struct AccountApi {
 	http_client: HTTPClient,
@@ -1145,10 +1144,7 @@ impl AccountApi {
 
 #[cfg(test)]
 mod tests {
-	use crate::{
-		client::{encode_param, HTTPClient},
-		testutil,
-	};
+	use crate::{client::encode_param, testutil};
 	use serde_json::json;
 
 	#[tokio::test]
