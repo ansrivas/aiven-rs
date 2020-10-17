@@ -1,3 +1,9 @@
+
+## 0.3.0
+Changes:
+- Support account, tickets and mirror-maker apis.
+- Dependecy updates
+
 ## 0.2.3
 Changes:
 - Use async-compat to run reqwest on other executors

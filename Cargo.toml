@@ -10,7 +10,7 @@ license = "MIT"
 name = "aiven_rs"
 readme = "README.md"
 repository = "https://github.com/ansrivas/aiven-rs"
-version = "0.2.3"
+version = "0.3.0"
 include = [
     "**/*.rs",
     "Cargo.toml",
