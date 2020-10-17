@@ -30,7 +30,7 @@ use crate::{
 	project::ProjectApi,
 	service::{
 		ServiceApi, ServiceElastiSearchApi, ServiceIntegrationsApi, ServiceKafkaApi,
-		ServiceMysqlApi, ServicePostgresApi,
+		ServiceKafkaMirrorMaker, ServiceMysqlApi, ServicePostgresApi,
 	},
 	ticket::TicketApi,
 	user::UserApi,
@@ -299,6 +299,24 @@ impl AivenClient {
 	/// ```
 	pub fn service_kafka(&self) -> ServiceKafkaApi {
 		create!(self, ServiceKafkaApi)
+	}
+
+	/// Access all the kafka service APIs
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let service_kafka_api = client.service_kafka_mirrormaker();
+	/// // use service_mirrormaker_api from here on
+	/// Ok(())
+	/// }
+	/// ```
+	pub fn service_kafka_mirrormaker(&self) -> ServiceKafkaMirrorMaker {
+		create!(self, ServiceKafkaMirrorMaker)
 	}
 
 	/// Access all the mysql service APIs
