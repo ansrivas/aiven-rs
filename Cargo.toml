@@ -19,7 +19,7 @@ include = [
 [dependencies]
 openssl = { version = "0.10", features = ["vendored"], optional = true }
 
-env_logger = "0.7.1"
+env_logger = "0.8.1"
 log = "0.4.8"
 percent-encoding = "2.1.0"
 
