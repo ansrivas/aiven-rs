@@ -23,6 +23,7 @@
 use aiven_rs::AivenClient;
 use log::info;
 use std::{collections::HashMap, env};
+
 #[tokio::main]
 async fn main() {
 	env_logger::init();
@@ -30,8 +31,14 @@ async fn main() {
 	let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 	let cloud = client.project();
 	let mut json_body = HashMap::new();
-	json_body.insert("copy_from_project", "some-project-a3ea".to_owned());
+	json_body.insert("copy_from_project", "some-existing-project".to_owned());
 	json_body.insert("project", "test".to_owned());
+
+	// or using serde_json::json
+	// use serde_json::json;
+	// let json_body = json!({"copy_from_project": "some-existing-project",
+	// "project": "new-name"});
+
 	let output = cloud.create(&json_body).await.unwrap();
 	info!("{:?}", output);
 }

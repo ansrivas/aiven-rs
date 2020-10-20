@@ -39,7 +39,7 @@ impl ProjectKeyManagementApi {
 
 	/// Claim a credit code
 	///
-	/// https://api.aiven.io/doc/#api-Project_Billing-ProjectCreditsClaim
+	/// https://api.aiven.io/doc/#operation/ProjectKmsGetCA
 	///
 	/// # Arguments
 	///

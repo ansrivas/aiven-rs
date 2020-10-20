@@ -40,7 +40,7 @@ impl ServicePostgresApi {
 
 	/// Update an existing access token.
 	///
-	/// https://api.aiven.io/doc/#api-User-AccessTokenUpdate
+	/// https://api.aiven.io/doc/#operation/ServicePGBouncerCreate
 	///
 	/// # Arguments
 	///
@@ -86,7 +86,7 @@ impl ServicePostgresApi {
 
 	/// Delete a connection pool
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_PostgreSQL-ServicePGBouncerDelete
+	/// https://api.aiven.io/doc/#operation/ServicePGBouncerDelete
 	///
 	/// # Arguments
 	///
@@ -126,7 +126,7 @@ impl ServicePostgresApi {
 
 	/// Fetch PostgreSQL service query statistics
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_PostgreSQL-PGServiceQueryStatistics
+	/// https://api.aiven.io/doc/#operation/PGServiceQueryStatistics
 	///
 	/// # Arguments
 	///
@@ -172,7 +172,7 @@ impl ServicePostgresApi {
 
 	/// Update a connection pool
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_PostgreSQL-ServicePGBouncerUpdate
+	/// https://api.aiven.io/doc/#operation/ServicePGBouncerUpdate
 	///
 	/// # Arguments
 	///

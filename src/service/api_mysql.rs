@@ -41,7 +41,7 @@ impl ServiceMysqlApi {
 
 	/// Fetch MySQL service query statistics
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_MySQL-MySQLServiceQueryStatistics
+	/// https://api.aiven.io/doc/#operation/MySQLServiceQueryStatistics
 	///
 	/// # Arguments
 	///

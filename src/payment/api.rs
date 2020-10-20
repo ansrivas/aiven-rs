@@ -48,7 +48,7 @@ impl PaymentApi {
 
 	/// Add credit card for user
 	///
-	/// https://api.aiven.io/doc/#api-Payment-CreditCardAdd
+	/// https://api.aiven.io/doc/#operation/CreditCardAdd
 	///
 	/// # Arguments
 	///
@@ -85,7 +85,7 @@ impl PaymentApi {
 
 	/// Delete user's credit card
 	///
-	/// https://api.aiven.io/doc/#api-Payment-CreditCardDelete
+	/// https://api.aiven.io/doc/#operation/CreditCardDelete
 	///
 	/// # Examples
 	/// Basic usage:
@@ -110,7 +110,7 @@ impl PaymentApi {
 
 	/// List user's credit cards
 	///
-	/// https://api.aiven.io/doc/#api-Payment-CreditCardsList
+	/// https://api.aiven.io/doc/#operation/CreditCardsList
 	///
 	/// # Examples
 	/// Basic usage:
@@ -135,7 +135,7 @@ impl PaymentApi {
 
 	/// Update user's credit card
 	///
-	/// https://api.aiven.io/doc/#api-Payment-CreditCardUpdate
+	/// https://api.aiven.io/doc/#operation/CreditCardUpdate
 	///
 	/// # Examples
 	/// Basic usage:

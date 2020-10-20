@@ -51,7 +51,7 @@ impl ServiceElastiSearchApi {
 	/// ```
 	/// Delete an Elasticsearch index
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Elasticsearch
+	/// https://api.aiven.io/doc/#operation/ServiceEsIndexDelete
 	///
 	/// # Examples
 	/// Basic usage:
@@ -83,6 +83,7 @@ impl ServiceElastiSearchApi {
 		Ok(())
 	}
 
+	/// https://api.aiven.io/doc/#operation/ServiceEsIndexList
 	pub async fn list_indexes(
 		&self,
 		project: &str,
@@ -97,6 +98,7 @@ impl ServiceElastiSearchApi {
 		Ok(response.json().await?)
 	}
 
+	/// https://api.aiven.io/doc/#operation/ServiceEsAclSet
 	pub async fn set_acl_configuration(
 		&self,
 		project: &str,
@@ -112,6 +114,7 @@ impl ServiceElastiSearchApi {
 		Ok(response.json().await?)
 	}
 
+	/// https://api.aiven.io/doc/#operation/ServiceEsAclGet
 	pub async fn show_acl_configuration(
 		&self,
 		project: &str,
@@ -126,6 +129,7 @@ impl ServiceElastiSearchApi {
 		Ok(response.json().await?)
 	}
 
+	/// https://api.aiven.io/doc/#operation/ServiceEsAclUpdate
 	pub async fn update_acl_configuration(
 		&self,
 		project: &str,

@@ -42,7 +42,7 @@ impl ServiceIntegrationsApi {
 
 	/// Create a new service integration endpoint
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationEndpointCreate
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationEndpointCreate
 	///
 	/// # Arguments
 	///
@@ -84,7 +84,7 @@ impl ServiceIntegrationsApi {
 
 	/// Create a new service integration
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationCreate
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationCreate
 	///
 	/// # Arguments
 	///
@@ -129,7 +129,7 @@ impl ServiceIntegrationsApi {
 
 	/// Delete a service integration endpoint
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationEndpointDelete
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationEndpointDelete
 	///
 	/// # Arguments
 	///
@@ -168,7 +168,7 @@ impl ServiceIntegrationsApi {
 
 	/// Delete a service integration
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationDelete
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationDelete
 	///
 	/// # Arguments
 	///
@@ -207,7 +207,7 @@ impl ServiceIntegrationsApi {
 
 	/// Get service integration
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationGet
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationGet
 	///
 	/// # Arguments
 	///
@@ -246,7 +246,7 @@ impl ServiceIntegrationsApi {
 
 	/// List available integration endpoints for project
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationEndpointList
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationEndpointList
 	///
 	/// # Arguments
 	///
@@ -282,7 +282,7 @@ impl ServiceIntegrationsApi {
 
 	/// List available integrations for a service
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationList
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationList
 	///
 	/// # Arguments
 	///
@@ -321,7 +321,7 @@ impl ServiceIntegrationsApi {
 
 	/// List available service integration endpoint types
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationEndpointTypes
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationEndpointTypes
 	///
 	/// # Arguments
 	///
@@ -357,7 +357,7 @@ impl ServiceIntegrationsApi {
 
 	/// List available service integration types
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationTypes
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationTypes
 	///
 	/// # Arguments
 	///
@@ -393,7 +393,7 @@ impl ServiceIntegrationsApi {
 
 	/// Update a service integration
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationUpdate
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationUpdate
 	///
 	/// # Arguments
 	///
@@ -432,7 +432,7 @@ impl ServiceIntegrationsApi {
 
 	/// Update service integration endpoint
 	///
-	/// https://api.aiven.io/doc/#api-Service_Integrations-ServiceIntegrationEndpointUpdate
+	/// https://api.aiven.io/doc/#operation/ServiceIntegrationEndpointUpdate
 	///
 	/// # Arguments
 	///

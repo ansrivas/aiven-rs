@@ -41,7 +41,7 @@ impl ServiceApi {
 
 	/// Cancel specified query from service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceCancelQuery
+	/// https://api.aiven.io/doc/#operation/ServiceCancelQuery
 	///
 	/// # Examples
 	/// Basic usage:
@@ -78,7 +78,7 @@ impl ServiceApi {
 
 	/// Create a new (sub) user for service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceUserCreate
+	/// https://api.aiven.io/doc/#operation/ServiceUserCreate
 	///
 	/// # Arguments
 	///
@@ -121,7 +121,7 @@ impl ServiceApi {
 
 	/// Create a new logical database for service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceDatabaseCreate
+	/// https://api.aiven.io/doc/#operation/ServiceDatabaseCreate
 	///
 	/// # Arguments
 	///
@@ -162,7 +162,7 @@ impl ServiceApi {
 
 	/// Create a new task for service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceTaskCreate
+	/// https://api.aiven.io/doc/#operation/ServiceTaskCreate
 	///
 	/// # Arguments
 	///
@@ -204,7 +204,7 @@ impl ServiceApi {
 
 	/// Create a service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceCreate
+	/// https://api.aiven.io/doc/#operation/ServiceCreate
 	///
 	/// # Arguments
 	///
@@ -245,7 +245,7 @@ impl ServiceApi {
 
 	/// Delete a logical database
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceDatabaseDelete
+	/// https://api.aiven.io/doc/#operation/ServiceDatabaseDelete
 	///
 	/// # Arguments
 	///
@@ -286,7 +286,7 @@ impl ServiceApi {
 
 	/// Delete a service user
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceUserDelete
+	/// https://api.aiven.io/doc/#operation/ServiceUserDelete
 	///
 	/// # Arguments
 	///
@@ -327,7 +327,7 @@ impl ServiceApi {
 
 	/// Fetch current queries for the service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceQueryActivity
+	/// https://api.aiven.io/doc/#operation/ServiceQueryActivity
 	///
 	/// # Examples
 	/// Basic usage:
@@ -368,7 +368,7 @@ impl ServiceApi {
 
 	/// Fetch service metrics
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceMetricsFetch
+	/// https://api.aiven.io/doc/#operation/ServiceMetricsFetch
 	///
 	/// # Examples
 	/// Basic usage:
@@ -405,7 +405,7 @@ impl ServiceApi {
 
 	/// Get details for a single user
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceUserGet
+	/// https://api.aiven.io/doc/#operation/ServiceUserGet
 	///
 	/// # Examples
 	/// Basic usage:
@@ -441,7 +441,7 @@ impl ServiceApi {
 
 	/// Get service information
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceGet
+	/// https://api.aiven.io/doc/#operation/ServiceGet
 	///
 	/// # Examples
 	/// Basic usage:
@@ -475,7 +475,7 @@ impl ServiceApi {
 
 	/// Get service log entries
 	///
-	/// https://api.aiven.io/doc/#api-Service-ProjectGetServiceLogs
+	/// https://api.aiven.io/doc/#operation/ProjectGetServiceLogs
 	///
 	/// # Examples
 	/// Basic usage:
@@ -517,7 +517,7 @@ impl ServiceApi {
 
 	/// Get task result
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceTaskGet
+	/// https://api.aiven.io/doc/#operation/ServiceTaskGet
 	///
 	/// # Examples
 	/// Basic usage:
@@ -553,7 +553,7 @@ impl ServiceApi {
 
 	/// List publicly available service types
 	///
-	/// https://api.aiven.io/doc/#api-Service-ListPublicServiceTypes
+	/// https://api.aiven.io/doc/#operation/ListPublicServiceTypes
 	///
 	/// # Examples
 	/// Basic usage:
@@ -578,7 +578,7 @@ impl ServiceApi {
 	}
 	/// List service types for a project
 	///
-	/// https://api.aiven.io/doc/#api-Service-ListProjectServiceTypes
+	/// https://api.aiven.io/doc/#operation/ListProjectServiceTypes
 	///
 	/// # Examples
 	/// Basic usage:
@@ -606,7 +606,7 @@ impl ServiceApi {
 	}
 	/// List service databases
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceDatabaseList
+	/// https://api.aiven.io/doc/#operation/ServiceDatabaseList
 	///
 	/// # Examples
 	/// Basic usage:
@@ -639,7 +639,7 @@ impl ServiceApi {
 
 	/// List active alerts for service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceAlertsList
+	/// https://api.aiven.io/doc/#operation/ServiceAlertsList
 	///
 	/// # Examples
 	/// Basic usage:
@@ -674,7 +674,7 @@ impl ServiceApi {
 
 	/// List services
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceList
+	/// https://api.aiven.io/doc/#operation/ServiceList
 	///
 	/// # Examples
 	/// Basic usage:
@@ -700,7 +700,7 @@ impl ServiceApi {
 
 	/// Modify service user credentials
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceUserCredentialsModify
+	/// https://api.aiven.io/doc/#operation/ServiceUserCredentialsModify
 	///
 	/// # Examples
 	/// Basic usage:
@@ -737,7 +737,7 @@ impl ServiceApi {
 
 	/// Reset service user credentials
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceUserCredentialsReset
+	/// https://api.aiven.io/doc/#operation/ServiceUserCredentialsReset
 	///
 	/// # Examples
 	/// Basic usage:
@@ -772,7 +772,7 @@ impl ServiceApi {
 
 	/// Reset service's query statistics
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceQueryStatisticsReset
+	/// https://api.aiven.io/doc/#operation/ServiceQueryStatisticsReset
 	///
 	/// # Examples
 	/// Basic usage:
@@ -805,7 +805,7 @@ impl ServiceApi {
 
 	/// Retrieve a service CA
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceKmsGetCA
+	/// https://api.aiven.io/doc/#operation/ServiceKmsGetCA
 	///
 	/// # Examples
 	/// Basic usage:
@@ -840,7 +840,7 @@ impl ServiceApi {
 
 	/// Retrieve service keypair
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceKmsGetKeypair
+	/// https://api.aiven.io/doc/#operation/ServiceKmsGetKeypair
 	///
 	/// # Examples
 	/// Basic usage:
@@ -875,7 +875,7 @@ impl ServiceApi {
 
 	/// Start maintenance updates
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceMaintenanceStart
+	/// https://api.aiven.io/doc/#operation/ServiceMaintenanceStart
 	///
 	/// # Examples
 	/// Basic usage:
@@ -910,7 +910,7 @@ impl ServiceApi {
 	/// Temporarily enable writes for a service in read-only mode.
 	/// Will only work if disk usage is lower than 99.0%
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceEnableWrites
+	/// https://api.aiven.io/doc/#operation/ServiceEnableWrites
 	///
 	/// # Examples
 	/// Basic usage:
@@ -944,7 +944,7 @@ impl ServiceApi {
 
 	/// Update service configuration
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceUpdate
+	/// https://api.aiven.io/doc/#operation/ServiceUpdate
 	///
 	/// # Examples
 	/// Basic usage:
@@ -994,7 +994,7 @@ impl ServiceApi {
 
 	/// Terminate a service
 	///
-	/// https://api.aiven.io/doc/#api-Service-ServiceDelete
+	/// https://api.aiven.io/doc/#operation/ServiceDelete
 	///
 	/// # Examples
 	/// Basic usage:

@@ -41,7 +41,7 @@ impl ServiceKafkaApi {
 
 	/// Add a Kafka ACL entry
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Kafka-ServiceKafkaAclAdd
+	/// https://api.aiven.io/doc/#operation/ServiceKafkaAclAdd
 	///
 	/// # Arguments
 	///
@@ -1034,7 +1034,7 @@ impl ServiceKafkaApi {
 
 	/// List kafka topic messages
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Kafka-ServiceKafkaTopicMessageList
+	/// https://api.aiven.io/doc/#operation/ServiceKafkaTopicMessageList
 	///
 	/// # Arguments
 	///
@@ -1082,7 +1082,7 @@ impl ServiceKafkaApi {
 	}
 	/// Lists Kafka connectors
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Kafka-ServiceKafkaConnectList
+	/// https://api.aiven.io/doc/#operation/ServiceKafkaConnectList
 	///
 	/// # Arguments
 	///
@@ -1195,7 +1195,7 @@ impl ServiceKafkaApi {
 
 	/// Produce message into a kafka topic
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Kafka-ServiceKafkaTopicMessageProduce
+	/// https://api.aiven.io/doc/#operation/ServiceKafkaTopicMessageProduce
 	///
 	/// # Arguments
 	///
@@ -1382,7 +1382,7 @@ impl ServiceKafkaApi {
 
 	/// Resume a Kafka Connect Connector
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Kafka-ServiceKafkaConnectResumeConnector
+	/// https://api.aiven.io/doc/#operation/ServiceKafkaConnectResumeConnector
 	///
 	/// # Arguments
 	///
@@ -1423,7 +1423,7 @@ impl ServiceKafkaApi {
 
 	/// Update a Kafka topic
 	///
-	/// https://api.aiven.io/doc/#api-Service_-_Kafka-ServiceKafkaTopicUpdate
+	/// https://api.aiven.io/doc/#operation/ServiceKafkaTopicUpdate
 	///
 	/// # Arguments
 	///

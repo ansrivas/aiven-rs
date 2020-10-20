@@ -41,7 +41,7 @@ impl ProjectApi {
 	}
 	///  Confirm project invite
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectInviteAccept
+	/// https://api.aiven.io/doc/#operation/ProjectInviteAccept
 	///
 	/// # Examples
 	/// Basic usage:
@@ -73,7 +73,7 @@ impl ProjectApi {
 
 	/// Create a project
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectCreate
+	/// https://api.aiven.io/doc/#operation/ProjectCreate
 	///
 	/// # Examples
 	/// Basic usage:
@@ -113,7 +113,7 @@ impl ProjectApi {
 
 	/// Delete a peering connection for a project VPC
 	///
-	/// https://api.aiven.io/doc/#api-Project-VpcPeeringConnectionDelete
+	/// https://api.aiven.io/doc/#operation/VpcPeeringConnectionDelete
 	///
 	/// # Examples
 	/// Basic usage:
@@ -335,7 +335,7 @@ impl ProjectApi {
 
 	/// Get project details
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectGet
+	/// https://api.aiven.io/doc/#operation/ProjectGet
 	///
 	/// # Arguments
 	///
@@ -368,7 +368,7 @@ impl ProjectApi {
 
 	/// Get project event log entries
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectGetEventLogs
+	/// https://api.aiven.io/doc/#operation/ProjectGetEventLogs
 	///
 	/// # Arguments
 	///
@@ -429,7 +429,7 @@ impl ProjectApi {
 
 	/// List active alerts for all services in a project
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectAlertsList
+	/// https://api.aiven.io/doc/#operation/ProjectAlertsList
 	///
 	/// # Arguments
 	///
@@ -462,7 +462,7 @@ impl ProjectApi {
 
 	/// List projects
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectList
+	/// https://api.aiven.io/doc/#operation/ProjectList
 	///
 	/// # Arguments
 	///
@@ -493,7 +493,7 @@ impl ProjectApi {
 	/// List users with access to the project. May contain same user multiple
 	/// times if they belong to multiple teams associated to the project.
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectUserList
+	/// https://api.aiven.io/doc/#operation/ProjectUserList
 	///
 	/// # Arguments
 	///
@@ -526,7 +526,7 @@ impl ProjectApi {
 
 	/// Remove user from the project.
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectUserRemove
+	/// https://api.aiven.io/doc/#operation/ProjectUserRemove
 	///
 	/// # Arguments
 	///
@@ -612,7 +612,7 @@ impl ProjectApi {
 
 	/// Request a peering connection for a project VPC
 	///
-	/// https://api.aiven.io/doc/#api-Project-VpcPeeringConnectionRequest
+	/// https://api.aiven.io/doc/#operation/VpcPeeringConnectionRequest
 	///
 	/// # Arguments
 	///
@@ -664,7 +664,7 @@ impl ProjectApi {
 
 	/// Send project membership invitation
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectInvite
+	/// https://api.aiven.io/doc/#operation/ProjectInvite
 	///
 	/// # Arguments
 	///
@@ -706,7 +706,7 @@ impl ProjectApi {
 
 	/// Update a project user.
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectUserUpdate
+	/// https://api.aiven.io/doc/#operation/ProjectUserUpdate
 	///
 	/// # Arguments
 	///
@@ -749,7 +749,7 @@ impl ProjectApi {
 
 	/// Update project
 	///
-	/// https://api.aiven.io/doc/#api-Project-ProjectUpdate
+	/// https://api.aiven.io/doc/#operation/ProjectUpdate
 	///
 	/// # Arguments
 	///
@@ -786,7 +786,7 @@ impl ProjectApi {
 
 	/// Update user-defined peer network CIDRs for a project VPC
 	///
-	/// https://api.aiven.io/doc/#api-Project-VpcPeeringConnectionUpdate
+	/// https://api.aiven.io/doc/#operation/VpcPeeringConnectionUpdate
 	///
 	/// # Arguments
 	///

@@ -42,7 +42,7 @@ impl ProjectBillingApi {
 
 	/// Claim a credit code
 	///
-	/// https://api.aiven.io/doc/#api-Project_Billing-ProjectCreditsClaim
+	/// https://api.aiven.io/doc/#operation/ProjectCreditsClaim
 	///
 	/// # Arguments
 	///
@@ -76,7 +76,7 @@ impl ProjectBillingApi {
 
 	/// Download PDF invoice
 	///
-	/// https://api.aiven.io/doc/#api-Project_Billing-ProjectInvoiceGet
+	/// https://api.aiven.io/doc/#operation/ProjectInvoiceGet
 	///
 	/// # Arguments
 	///
@@ -119,7 +119,7 @@ impl ProjectBillingApi {
 
 	/// List project credits
 	///
-	/// https://api.aiven.io/doc/#api-Project_Billing-ProjectCreditsList
+	/// https://api.aiven.io/doc/#operation/ProjectCreditsList
 	///
 	/// # Arguments
 	///
@@ -145,7 +145,7 @@ impl ProjectBillingApi {
 
 	/// List project invoices
 	///
-	/// https://api.aiven.io/doc/#api-Project_Billing-ProjectInvoiceList
+	/// https://api.aiven.io/doc/#operation/ProjectInvoiceList
 	///
 	/// # Arguments
 	///
