@@ -21,27 +21,35 @@
 // SOFTWARE.
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
+use anyhow::{Error, Result};
+use async_compat::Compat;
+use smol;
 
-#[tokio::main]
-async fn main() {
-	env_logger::init();
+fn main() -> Result<()> {
+	smol::block_on(Compat::new(async {
+		env_logger::init();
 
-	// use std::env;
-	// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
-	// AIVEN_TOKEN");
-	let client = AivenClient::new("https://api.aiven.io", "v1");
-	let cloud_api = client.cloud();
-	let output: ResClouds = cloud_api.list_all().await.unwrap();
-	for cloud in &output.clouds {
-		println!("{:?}", cloud.cloud_name);
-	}
+		let client = AivenClient::new("https://api.aiven.io", "v1");
+		let service_api = client.service_integrations();
+		let output = service_api
+			.list_endpoints_by_project("ansrivas-testproject")
+			.await?;
+		for endpoint in &output.service_integration_endpoints {
+			println!("{:?}", endpoint);
+		}
 
-	// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
-	// let output = client.cloud()
-	// 	.list_by_project("some-arbitrary-project")
-	// 	.await
-	// 	.unwrap();
-	// 	for cloud in &output.clouds {
-	// 	println!("{:?}", cloud.cloud_name);
-	// }
+		// use std::env;
+		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
+		// AIVEN_TOKEN");
+
+		// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
+		// let output = client.cloud()
+		// 	.list_by_project("some-arbitrary-project")
+		// 	.await
+		// 	.map_err(Error::msg)?
+		// 	for cloud in &output.clouds {
+		// 	println!("{:?}", cloud.cloud_name);
+		// }
+		Ok(())
+	}))
 }

@@ -50,7 +50,7 @@ pub enum AivenError {
 	#[error("Failed during Serde operation")]
 	SerdeError(#[from] serde_json::Error),
 
-	#[error("Failed during parsing APIResponse")]
+	#[error("Failed during parsing APIResponse: {message:?} and errors {errors:?}")]
 	APIResponseError {
 		errors: Vec<APIError>,
 		message: String,
