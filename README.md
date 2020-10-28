@@ -8,7 +8,6 @@
   <a href="https://aiven.io/"><img style="width:75%;" src="assets/aiven.png" alt="aiven" border="0" /></a>
 </div>
 
-
 ![Linux](https://github.com/ansrivas/aiven-rs/workflows/Linux/badge.svg)
 [![Crates.io](https://img.shields.io/crates/v/aiven_rs)](https://crates.io/crates/aiven_rs)
 [![Docs.rs](https://docs.rs/aiven_rs/badge.svg)](https://docs.rs/aiven_rs)
@@ -19,20 +18,23 @@
 </br>
 
 ## Resources
-* Build Status on other [platforms](./BUILD_STATUS.md)
-* Majority of the end points from https://api.aiven.io/doc/ have been implemented as of [17.04.2020]
-* [Documentation](https://docs.rs/aiven-rs)
-* Minimum supported Rust version: 1.42 or later
+
+- Build Status on other [platforms](./BUILD_STATUS.md)
+- Majority of the end points from https://api.aiven.io/doc/ have been implemented as of [17.04.2020]
+- [Documentation](https://docs.rs/aiven-rs)
+- Minimum supported Rust version: 1.42 or later
 
 ## Getting Started
+
 ```rust
+// tokio = "0.2"
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 
 #[tokio::main]
 async fn main() {
   env_logger::init();
   // use std::env;
-  // 
+  //
   // let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read AIVEN_TOKEN");
   // let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 
@@ -49,5 +51,4 @@ async fn main() {
 
 This project is licensed under
 
-* MIT license ([LICENSE-MIT](LICENSE) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
-
+- MIT license ([LICENSE-MIT](LICENSE) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))
