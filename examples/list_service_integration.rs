@@ -20,16 +20,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use aiven_rs::{cloud::types::ResClouds, AivenClient};
-use anyhow::{Error, Result};
+use aiven_rs::AivenClient;
+use anyhow::Result;
 use async_compat::Compat;
 use smol;
+use std::env;
 
 fn main() -> Result<()> {
 	smol::block_on(Compat::new(async {
 		env_logger::init();
 
-		let client = AivenClient::new("https://api.aiven.io", "v1");
+		let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read AIVEN_TOKEN");
+		let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 		let service_api = client.service_integrations();
 		let output = service_api
 			.list_endpoints_by_project("ansrivas-testproject")
@@ -38,18 +40,6 @@ fn main() -> Result<()> {
 			println!("{:?}", endpoint);
 		}
 
-		// use std::env;
-		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read
-		// AIVEN_TOKEN");
-
-		// let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
-		// let output = client.cloud()
-		// 	.list_by_project("some-arbitrary-project")
-		// 	.await
-		// 	.map_err(Error::msg)?
-		// 	for cloud in &output.clouds {
-		// 	println!("{:?}", cloud.cloud_name);
-		// }
 		Ok(())
 	}))
 }
