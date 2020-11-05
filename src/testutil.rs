@@ -71,7 +71,7 @@ pub(crate) fn create_mock_server(query_url: &str, test_data: &str, method: &str)
 	// dbg!(test_data);
 
 	let query_url = format!("/{}", query_url.trim_start_matches('/'));
-	mock(method, query_url.as_ref())
+	mock(method, query_url.as_str())
 		.match_header("authorization", "aivenv1 abc")
 		.with_status(200)
 		.with_header("content-type", "application/json")
