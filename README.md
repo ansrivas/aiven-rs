@@ -28,6 +28,8 @@
 
 ```rust
 // tokio = "0.2"
+// aiven_rs = "0.3.0"
+
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 
 #[tokio::main]
