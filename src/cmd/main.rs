@@ -28,13 +28,9 @@ use table::print_table;
 
 use account::handle_accounts;
 use account::Account;
-use aiven_rs::errors;
-use aiven_rs::{cloud::types::ResClouds, AivenClient};
-use anyhow::{Error, Result};
+use aiven_rs::AivenClient;
 use async_compat::Compat;
 use cloud::{handle_cloud_list, Cloud};
-use comfy_table::presets::UTF8_FULL;
-use comfy_table::*;
 use smol;
 use std::path::PathBuf;
 use structopt::StructOpt;
@@ -84,7 +80,7 @@ fn main() {
 		let _ = match avn.commands {
 			SubCommands::One(account) => handle_accounts(account),
 			SubCommands::Two(cloud) => handle_cloud_list(&client, cloud).await,
-			_ => Err(errors::AivenError::UnsupportedMethod),
+			// _ => Err(errors::AivenError::UnsupportedMethod),
 		};
 	}));
 }

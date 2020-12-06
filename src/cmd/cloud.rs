@@ -21,9 +21,8 @@
 // SOFTWARE.
 
 use crate::print_table;
-use aiven_rs::{cloud::types::ResClouds, AivenClient};
-use anyhow::{Error, Result};
-use comfy_table::presets::UTF8_FULL;
+use aiven_rs::cloud::types::ResClouds;
+use anyhow::Result;
 use comfy_table::*;
 use structopt::StructOpt;
 
@@ -62,6 +61,7 @@ pub async fn handle_cloud_list(
 				println!("{}", serde_json::to_string_pretty(&output.clouds)?);
 				return Ok(());
 			}
+
 			let header = vec![
 				"CLOUD_DESCRIPTION",
 				"CLOUD_NAME",
