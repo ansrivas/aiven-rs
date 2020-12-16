@@ -1,0 +1,40 @@
+{
+    "billing_group": {
+        "account_id": "some-unique-accountid",
+        "account_name": "string",
+        "address_lines": [
+            "string"
+        ],
+        "billing_address": "string",
+        "billing_currency": "AUD",
+        "billing_emails": [
+            {
+                "email": "string"
+            }
+        ],
+        "billing_extra_text": "string",
+        "billing_group_id": "stringstringstringstringstringstring",
+        "billing_group_name": "string",
+        "card_info": {
+            "brand": "string",
+            "card_id": "string",
+            "country": "string",
+            "country_code": "st",
+            "exp_month": 1,
+            "exp_year": 2015,
+            "last4": "string",
+            "name": "string",
+            "user_email": "string"
+        },
+        "city": "string",
+        "company": "string",
+        "country": "string",
+        "country_code": "st",
+        "estimated_balance_local": "string",
+        "estimated_balance_usd": "string",
+        "payment_method": "card",
+        "state": "string",
+        "vat_id": "string",
+        "zip_code": "string"
+    }
+}

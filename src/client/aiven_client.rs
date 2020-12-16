@@ -23,6 +23,7 @@
 use crate::{
 	account::AccountApi,
 	billing::ProjectBillingApi,
+	billing_group::BillingGroupApi,
 	client::HTTPClient,
 	cloud::CloudApi,
 	key_mgmt::ProjectKeyManagementApi,
@@ -382,12 +383,30 @@ impl AivenClient {
 	/// #[tokio::main]
 	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
 	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
-	/// let ticket_api = client.account();
+	/// let account_api = client.account();
 	/// // use account_api from here on
 	/// Ok(())
 	/// }
 	/// ```
 	pub fn account(&self) -> AccountApi {
 		create!(self, AccountApi)
+	}
+
+	/// Access all billing-group related APIs
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let billing_group_api = client.billing_group();
+	/// // use billing_group_api from here on
+	/// Ok(())
+	/// }
+	/// ```
+	pub fn billing_group(&self) -> BillingGroupApi {
+		create!(self, BillingGroupApi)
 	}
 }
