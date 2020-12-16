@@ -94,13 +94,16 @@ mod tests {
 
 		let mut json_body = json!({
 			"account_id": "string",
-            "address_lines":[
-                "string"
-            ]
-        });
+			"address_lines":[
+				"string"
+			]
+		});
 		match client.billing_group().create(&json_body).await {
 			Ok(response) => {
-				assert!(response.billing_group.account_id == "some-unique-accountid", format!("{:?}", response));
+				assert!(
+					response.billing_group.account_id == "some-unique-accountid",
+					format!("{:?}", response)
+				);
 			}
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}

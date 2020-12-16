@@ -23,9 +23,8 @@
 use serde::{Deserialize, Serialize};
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct Email {
-    pub email: String
+	pub email: String,
 }
-
 
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct BillingGroup {
@@ -40,7 +39,7 @@ pub struct BillingGroup {
 	pub billing_group_id: String,
 	pub billing_group_name: String,
 
-    pub card_info: CardInfo,
+	pub card_info: CardInfo,
 	pub city: String,
 	pub company: String,
 	pub country: String,
@@ -55,19 +54,18 @@ pub struct BillingGroup {
 
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct ResponseBillingGroup {
-    pub billing_group: BillingGroup
+	pub billing_group: BillingGroup,
 }
-
 
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct CardInfo {
-    pub brand: String,
-    pub card_id: String,
-    pub country: String,
-    pub country_code: String, 
-    pub exp_month: u32, 
-    pub exp_year: u32, 
-    pub last4: String,
-    pub name: String,
-    pub user_email: String, 
+	pub brand: String,
+	pub card_id: String,
+	pub country: String,
+	pub country_code: String,
+	pub exp_month: u32,
+	pub exp_year: u32,
+	pub last4: String,
+	pub name: String,
+	pub user_email: String,
 }

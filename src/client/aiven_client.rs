@@ -23,6 +23,7 @@
 use crate::{
 	account::AccountApi,
 	billing::ProjectBillingApi,
+	billing_group::BillingGroupApi,
 	client::HTTPClient,
 	cloud::CloudApi,
 	key_mgmt::ProjectKeyManagementApi,
@@ -34,7 +35,6 @@ use crate::{
 	},
 	ticket::TicketApi,
 	user::UserApi,
-	billing_group::BillingGroupApi,
 };
 
 use reqwest::header::HeaderValue;
@@ -391,7 +391,6 @@ impl AivenClient {
 	pub fn account(&self) -> AccountApi {
 		create!(self, AccountApi)
 	}
-
 
 	/// Access all billing-group related APIs
 	///

@@ -48,6 +48,7 @@ mod client;
 mod customdeser;
 
 pub mod account;
+pub mod billing_group;
 pub mod cloud;
 pub mod key_mgmt;
 pub mod payment;
@@ -57,7 +58,6 @@ pub mod service;
 mod testutil;
 pub mod ticket;
 pub mod user;
-pub mod billing_group;
 
 pub mod errors;
 pub use client::{APIError, AivenClient};
