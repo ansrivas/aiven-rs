@@ -57,6 +57,7 @@ pub mod service;
 mod testutil;
 pub mod ticket;
 pub mod user;
+pub mod billing_group;
 
 pub mod errors;
 pub use client::{APIError, AivenClient};
@@ -88,3 +89,6 @@ pub use ticket::TicketApi;
 
 #[doc(hidden)]
 pub use account::AccountApi;
+
+#[doc(hidden)]
+pub use billing_group::BillingGroupApi;
