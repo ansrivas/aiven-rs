@@ -76,7 +76,6 @@ impl BillingGroupApi {
 
 #[cfg(test)]
 mod tests {
-	use super::*;
 	use crate::testutil;
 	use serde_json::json;
 	#[tokio::test]
@@ -87,7 +86,7 @@ mod tests {
 			testutil::get_test_data("tests/testdata/billing_group/create_billing_group.json");
 		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
 
-		let mut json_body = json!({
+		let json_body = json!({
 			"account_id": "string",
 			"address_lines":[
 				"string"
