@@ -52,7 +52,7 @@ features = ["blocking", "macros", "rt-core", "time", "stream", "sync"]
 version = "0.2.21"
 
 [dev-dependencies]
-anyhow = "1.0.31"
+anyhow = "1.0"
 async-compat = "0.1.3"
 
 

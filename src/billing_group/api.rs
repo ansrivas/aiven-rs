@@ -20,12 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use crate::{
-	billing_group::types,
-	client::{encode_param, HTTPClient},
-	errors::AivenError,
-	make_json_request, make_request,
-};
+use crate::{billing_group::types, client::HTTPClient, errors::AivenError, make_json_request};
 use serde::Serialize;
 
 pub struct BillingGroupApi {
