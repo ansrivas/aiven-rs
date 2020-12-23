@@ -1,0 +1,13 @@
+{
+
+    "credit":
+
+    {
+
+        "code": "unique-code",
+        "remaining_value": "string",
+        "type": "discount"
+
+    }
+
+}

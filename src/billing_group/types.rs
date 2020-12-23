@@ -74,3 +74,16 @@ pub struct CardInfo {
 	pub name: String,
 	pub user_email: String,
 }
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseClaimCredit {
+	pub credit: Credit,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Credit {
+	pub code: String,
+	pub remaining_value: String,
+	#[serde(rename = "type")]
+	pub credit_type: String,
+}

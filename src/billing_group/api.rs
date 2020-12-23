@@ -104,12 +104,52 @@ impl BillingGroupApi {
 		let response = make_request!(self, reqwest::Method::GET, url)?;
 		Ok(response.json().await?)
 	}
+
+	/// Claim a credit code
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupCreditsClaim
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let response = client
+	///         .billing_group()
+	///         .claim_credit_code("billing-group-id", "credit-code").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn claim_credit_code(
+		&self,
+		billing_group_id: &str,
+		credit_code: &str,
+	) -> Result<types::ResponseClaimCredit, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/credits",
+			billing_group = encode_param(billing_group_id)
+		);
+
+		let body = &serde_json::json!({
+			"code": credit_code,
+		});
+		let response = make_json_request!(self, reqwest::Method::POST, url, body)?;
+		Ok(response.json().await?)
+	}
 }
 
 #[cfg(test)]
 mod tests {
+	use crate::client::encode_param;
 	use crate::testutil;
 	use serde_json::json;
+
 	#[tokio::test]
 	async fn test_billing_group_create() {
 		let client = testutil::prepare_test_client();
@@ -147,6 +187,32 @@ mod tests {
 			Ok(response) => {
 				assert!(
 					response.billing_groups[0].account_id == "some-unique-accountid",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_claim_credit_code() {
+		let client = testutil::prepare_test_client();
+		let query_url = &format!(
+			"/billing-group/{billing_group}/credits",
+			billing_group = encode_param("my-billing-group")
+		);
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/claim_credit_code.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
+
+		match client
+			.billing_group()
+			.claim_credit_code("my-billing-group", "unique-credit-code")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.credit.code == "unique-code",
 					format!("{:?}", response)
 				);
 			}
