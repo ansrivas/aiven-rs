@@ -58,6 +58,11 @@ pub struct ResponseBillingGroup {
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseBillingGroups {
+	pub billing_groups: Vec<BillingGroup>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
 pub struct CardInfo {
 	pub brand: String,
 	pub card_id: String,

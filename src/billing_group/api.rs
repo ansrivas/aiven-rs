@@ -77,11 +77,37 @@ impl BillingGroupApi {
 		let response = make_json_request!(self, reqwest::Method::POST, url, json_body)?;
 		Ok(response.json().await?)
 	}
+
+	/// List billing groups
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let response = client
+	///         .billing_group()
+	///         .list().await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn list(&self) -> Result<types::ResponseBillingGroups, AivenError> {
+		let url = "/billing-group";
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
 }
 
 #[cfg(test)]
 mod tests {
-	use super::*;
 	use crate::testutil;
 	use serde_json::json;
 	#[tokio::test]
@@ -92,7 +118,7 @@ mod tests {
 			testutil::get_test_data("tests/testdata/billing_group/create_billing_group.json");
 		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
 
-		let mut json_body = json!({
+		let json_body = json!({
 			"account_id": "string",
 			"address_lines":[
 				"string"
@@ -102,6 +128,25 @@ mod tests {
 			Ok(response) => {
 				assert!(
 					response.billing_group.account_id == "some-unique-accountid",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_list() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/billing-group";
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/list_billing_groups.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+
+		match client.billing_group().list().await {
+			Ok(response) => {
+				assert!(
+					response.billing_groups[0].account_id == "some-unique-accountid",
 					format!("{:?}", response)
 				);
 			}
