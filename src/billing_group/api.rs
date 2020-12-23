@@ -146,7 +146,7 @@ impl BillingGroupApi {
 
 #[cfg(test)]
 mod tests {
-	use crate::client::encode_param;
+	use super::*;
 	use crate::testutil;
 	use serde_json::json;
 
