@@ -241,6 +241,47 @@ impl BillingGroupApi {
 		let response = make_request!(self, reqwest::Method::GET, url)?;
 		Ok(response.json().await?)
 	}
+
+	/// Update billing group
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupUpdate
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// // Rest of the body can be checked from the link above.
+	/// let body = json!({
+	/// "account_id": "string",
+	/// "address_lines": [
+	/// "string"],
+	/// });
+	/// let response = client
+	///         .billing_group()
+	///         .update("billing-group-id", &body).await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn update<T: Serialize + ?Sized>(
+		&self,
+		billing_group_id: &str,
+		json_body: &T,
+	) -> Result<types::ResponseBillingGroup, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param(billing_group_id)
+		);
+
+		let response = make_json_request!(self, reqwest::Method::PUT, url, json_body)?;
+		Ok(response.json().await?)
+	}
 }
 
 #[cfg(test)]
@@ -379,6 +420,55 @@ mod tests {
 			Ok(response) => {
 				assert!(
 					response.billing_group.account_id == "unique-account-id",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_update() {
+		let client = testutil::prepare_test_client();
+		let query_url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param("my-billing-group")
+		);
+
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/billing_group_update.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "PUT");
+
+		let body = json!({
+			"account_id": "string",
+			"address_lines": [
+				"string"
+			],
+			"billing_currency": "AUD",
+			"billing_emails": [
+				{
+					"email": "string"
+				}
+			],
+			"billing_extra_text": "string",
+			"billing_group_name": "string",
+			"card_id": "string",
+			"city": "string",
+			"company": "string",
+			"country_code": "st",
+			"state": "string",
+			"vat_id": "string",
+			"zip_code": "string"
+
+		});
+		match client
+			.billing_group()
+			.update("my-billing-group", &body)
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.billing_group.account_id == "unique-updated-account",
 					format!("{:?}", response)
 				);
 			}
