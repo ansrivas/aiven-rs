@@ -81,6 +81,11 @@ pub struct ResponseClaimCredit {
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseCredits {
+	pub credits: Vec<Credit>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
 pub struct Credit {
 	pub code: String,
 	pub remaining_value: String,

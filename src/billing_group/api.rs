@@ -142,6 +142,105 @@ impl BillingGroupApi {
 		let response = make_json_request!(self, reqwest::Method::POST, url, body)?;
 		Ok(response.json().await?)
 	}
+
+	/// List billing group credits
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupCreditsList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let response = client
+	///         .billing_group()
+	///         .list_billing_group_credits("billing-group-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn list_billing_group_credits(
+		&self,
+		billing_group_id: &str,
+	) -> Result<types::ResponseCredits, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/credits",
+			billing_group = encode_param(billing_group_id)
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Delete billing group
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupDelete
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let response = client
+	///         .billing_group()
+	///         .delete("billing-group-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn delete(&self, billing_group_id: &str) -> Result<(), AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param(billing_group_id)
+		);
+
+		let _response = make_request!(self, reqwest::Method::DELETE, url)?;
+		Ok(())
+	}
+
+	/// Get billing group details
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupGet
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let response = client
+	///         .billing_group()
+	///         .details("billing-group-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn details(
+		&self,
+		billing_group_id: &str,
+	) -> Result<types::ResponseBillingGroup, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param(billing_group_id)
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
 }
 
 #[cfg(test)]
@@ -213,6 +312,73 @@ mod tests {
 			Ok(response) => {
 				assert!(
 					response.credit.code == "unique-code",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_list_billing_group_credits() {
+		let client = testutil::prepare_test_client();
+		let query_url = &format!(
+			"/billing-group/{billing_group}/credits",
+			billing_group = encode_param("my-billing-group")
+		);
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/list_billing_group_credits.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+
+		match client
+			.billing_group()
+			.list_billing_group_credits("my-billing-group")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.credits[0].code == "unique-code",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_delete() {
+		let client = testutil::prepare_test_client();
+		let query_url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param("my-billing-group")
+		);
+
+		let _m = testutil::create_mock_server(query_url, "", "DELETE");
+
+		match client.billing_group().delete("my-billing-group").await {
+			Ok(_response) => {
+				assert!(true);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_details() {
+		let client = testutil::prepare_test_client();
+		let query_url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param("my-billing-group")
+		);
+
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/billing_group_details.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+
+		match client.billing_group().details("my-billing-group").await {
+			Ok(response) => {
+				assert!(
+					response.billing_group.account_id == "unique-account-id",
 					format!("{:?}", response)
 				);
 			}
