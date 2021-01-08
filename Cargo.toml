@@ -1,6 +1,6 @@
 [package]
 authors = ["Ankur Srivastava <ankur.srivastava@email.de>"]
-categories = ["sdk", "aiven", "cloud", "infra"]
+categories = ["api-bindings", "asynchronous", "cloud", "infra"]
 description = "This is a rust sdk to interact with aiven-cloud apis."
 documentation = "https://docs.rs/aiven-rs"
 edition = "2018"
