@@ -20,15 +20,14 @@
 ## Resources
 
 - Build Status on other [platforms](./BUILD_STATUS.md)
-- Majority of the end points from https://api.aiven.io/doc/ have been implemented as of [17.04.2020]
+- Majority of the end points from https://api.aiven.io/doc/ have been implemented as of [07.01.2021]
 - [Documentation](https://docs.rs/aiven-rs)
-- Minimum supported Rust version: 1.42 or later
 
 ## Getting Started
 
 ```rust
-// tokio = "0.2"
-// aiven_rs = "0.3.0"
+// tokio = "1.0"
+// aiven_rs = "0.4.0"
 
 use aiven_rs::{cloud::types::ResClouds, AivenClient};
 
@@ -48,9 +47,7 @@ async fn main() {
   }
 }
 ```
-
 ## License
 
 This project is licensed under
-
 - MIT license ([LICENSE-MIT](LICENSE) or [http://opensource.org/licenses/MIT](http://opensource.org/licenses/MIT))

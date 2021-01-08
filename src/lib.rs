@@ -53,7 +53,6 @@ pub mod cloud;
 pub mod key_mgmt;
 pub mod payment;
 pub mod project;
-mod response;
 pub mod service;
 mod testutil;
 pub mod ticket;
