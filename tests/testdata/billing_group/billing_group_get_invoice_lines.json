@@ -1,0 +1,18 @@
+{
+    "lines": [
+        {
+            "cloud_name": "aws-east",
+            "description": "string",
+            "line_total_local": "string",
+            "line_total_usd": "string",
+            "line_type": "commitment_fee",
+            "local_currency": "string",
+            "project_name": "string",
+            "service_name": "string",
+            "service_plan": "string",
+            "service_type": "alerta",
+            "timestamp_begin": "string",
+            "timestamp_end": "string"
+        }
+    ]
+}

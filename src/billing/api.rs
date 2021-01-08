@@ -97,6 +97,7 @@ impl ProjectBillingApi {
 	///   .download_pdf_invoice("project", "invoice", "download-cookie")
 	///   .await?;
 	/// let mut file = File::create("foo.pdf")?;
+	/// file.flush()?;
 	/// file.write_all(&response[..])?;
 	/// Ok(())
 	/// }

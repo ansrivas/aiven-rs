@@ -65,7 +65,7 @@ macro_rules! make_json_request {
 			.await?;
 		let status_code = &response.status().as_u16();
 
-		if !(*status_code >= 200 && *status_code <= 300) {
+		if !(*status_code >= 200 && *status_code < 300) {
 			debug!("status_code = {}", status_code);
 			debug!("url queried = {}", $url);
 			let api_response: APIResponse = response.json().await?;
@@ -73,10 +73,10 @@ macro_rules! make_json_request {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
 			});
-			}
+		}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
 		ret
-		}};
+	}};
 }
 
 /// Make a http request without json body.
@@ -91,16 +91,16 @@ macro_rules! make_request {
 		let status_code = &response.status().as_u16();
 		debug!("Received status code: {}", status_code);
 
-		if !(*status_code >= 200 && *status_code <= 300) {
+		if !(*status_code >= 200 && *status_code < 300) {
 			let api_response: APIResponse = response.json().await?;
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
 			});
-			}
+		}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
 		ret
-		}};
+	}};
 }
 
 impl HTTPClient {

@@ -1,0 +1,8 @@
+{
+"invoice": {
+        "invoice_number": "12345",
+        "invoice_state": "accrual",
+        "local_inc_vat": "string",
+        "local_vat_zero": "string"
+    }
+}

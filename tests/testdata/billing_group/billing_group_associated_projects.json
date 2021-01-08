@@ -1,0 +1,9 @@
+{
+    "projects": [
+        {
+            "available_credits": "32.5",
+            "estimated_balance": "string",
+            "project_name": "my-project"
+        }
+    ]
+}
