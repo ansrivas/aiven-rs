@@ -109,3 +109,66 @@ pub struct Event {
 	pub project_id: String,
 	pub project_name: String,
 }
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Invoice {
+	pub invoice_number: String,
+	pub invoice_state: String,
+	pub local_inc_vat: String,
+	pub local_vat_zero: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseInvoice {
+	pub invoice: Invoice,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseInvoiceLines {
+	pub lines: Vec<InvoiceLines>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct InvoiceLines {
+	pub cloud_name: String,
+	pub description: String,
+	pub line_total_local: String,
+	pub line_total_usd: String,
+	pub line_type: String,
+	pub local_currency: String,
+	pub project_name: String,
+	pub service_name: String,
+	pub service_plan: String,
+	pub service_type: String,
+	pub timestamp_begin: String,
+	pub timestamp_end: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct InvoiceBillingGroup {
+	pub currency: String,
+	pub download_cookie: String,
+	pub invoice_number: String,
+	pub period_begin: String,
+	pub period_end: String,
+	pub state: String,
+	pub total_inc_vat: String,
+	pub total_vat_zero: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseInvoiceBillingGroup {
+	pub invoices: Vec<InvoiceBillingGroup>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Project {
+	pub available_credits: String,
+	pub estimated_balance: String,
+	pub project_name: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseAssociatedProjects {
+	pub projects: Vec<Project>,
+}

@@ -28,6 +28,7 @@ use crate::{
 };
 use bytes::Bytes;
 use serde::Serialize;
+use std::iter::IntoIterator;
 
 pub struct BillingGroupApi {
 	http_client: HTTPClient,
@@ -319,9 +320,9 @@ impl BillingGroupApi {
 		Ok(response.json().await?)
 	}
 
-	/// List billing group events
+	/// Download PDF invoice
 	///
-	/// https://api.aiven.io/doc/#operation/BillingGroupEventList
+	/// https://api.aiven.io/doc/#operation/BillingGroupInvoiceDownload
 	///
 	/// # Examples
 	/// Basic usage:
@@ -360,6 +361,221 @@ impl BillingGroupApi {
 
 		let response = make_request!(self, reqwest::Method::GET, url)?;
 		Ok(response.bytes().await?)
+	}
+
+	/// Get a single invoice
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupInvoiceGet
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use tokio::io::AsyncWriteExt;
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .get_invoice("billing-group-id", "invoice-num").await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn get_invoice(
+		&self,
+		billing_group_id: &str,
+		invoice_number: &str,
+	) -> Result<types::ResponseInvoice, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice/{invoice_number}",
+			billing_group = encode_param(billing_group_id),
+			invoice_number = encode_param(invoice_number),
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Get invoice lines for a single invoice
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupInvoiceLinesList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use tokio::io::AsyncWriteExt;
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .get_invoice_lines("billing-group-id", "invoice-num").await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn get_invoice_lines(
+		&self,
+		billing_group_id: &str,
+		invoice_number: &str,
+	) -> Result<types::ResponseInvoiceLines, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice/{invoice_number}/lines",
+			billing_group = encode_param(billing_group_id),
+			invoice_number = encode_param(invoice_number),
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Get invoices generated for billing group
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupInvoiceList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .get_invoices("billing-group-id").await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn get_invoices(
+		&self,
+		billing_group_id: &str,
+	) -> Result<types::ResponseInvoiceBillingGroup, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice",
+			billing_group = encode_param(billing_group_id),
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Assign project to billing group
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupProjectAssign
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .assign_project("billing-group-id", "project-name").await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn assign_project(
+		&self,
+		billing_group_id: &str,
+		project_name: &str,
+	) -> Result<(), AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/project-assign/{project}",
+			billing_group = encode_param(billing_group_id),
+			project = encode_param(project_name),
+		);
+
+		let _response = make_request!(self, reqwest::Method::POST, url)?;
+		Ok(())
+	}
+
+	/// Get projects assigned to billing group
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupProjectList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .get_associated_projects("billing-group-id").await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn get_associated_projects(
+		&self,
+		billing_group_id: &str,
+	) -> Result<types::ResponseAssociatedProjects, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/projects",
+			billing_group = encode_param(billing_group_id),
+		);
+
+		let response = make_request!(self, reqwest::Method::POST, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Assign projects to billing group
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupProjectsAssign
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	/// let projects = vec!["project1", "project2"];
+	/// let response = client
+	///         .billing_group()
+	///         .assign_projects("billing-group-id", projects ).await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn assign_projects<T, I>(
+		&self,
+		billing_group_id: &str,
+		projects: I,
+	) -> Result<(), AivenError>
+	where
+		I: IntoIterator<Item = T>,
+		T: Into<String>,
+	{
+		let url = &format!(
+			"/billing-group/{billing_group}/projects-assign",
+			billing_group = encode_param(billing_group_id),
+		);
+
+		let projects: Vec<String> = projects.into_iter().map(Into::into).collect();
+		let body = &serde_json::json!({
+			"projects_names": projects,
+		});
+		let _response = make_json_request!(self, reqwest::Method::POST, url, body)?;
+		Ok(())
 	}
 }
 
@@ -601,6 +817,167 @@ mod tests {
 					&response[..] == b"fake-invoice-data",
 					format!("{:?}", response)
 				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_get_invoice() {
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice/{invoice_number}",
+			billing_group = encode_param("my-billing-group"),
+			invoice_number = encode_param("invoice-num"),
+		);
+
+		let test_data = testutil::get_test_data(
+			"tests/testdata/billing_group/billing_group_get_single_invoice.json",
+		);
+		let _m = testutil::create_mock_server(url, &test_data, "GET");
+
+		match client
+			.billing_group()
+			.get_invoice("my-billing-group", "invoice-num")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.invoice.invoice_number == "12345",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_get_invoice_lines() {
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice/{invoice_number}/lines",
+			billing_group = encode_param("my-billing-group"),
+			invoice_number = encode_param("invoice-num"),
+		);
+
+		let test_data = testutil::get_test_data(
+			"tests/testdata/billing_group/billing_group_get_invoice_lines.json",
+		);
+		let _m = testutil::create_mock_server(url, &test_data, "GET");
+
+		match client
+			.billing_group()
+			.get_invoice_lines("my-billing-group", "invoice-num")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.lines[0].cloud_name == "aws-east",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_get_invoices() {
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice",
+			billing_group = encode_param("my-billing-group"),
+		);
+
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/billing_group_get_invoices.json");
+		let _m = testutil::create_mock_server(url, &test_data, "GET");
+
+		match client
+			.billing_group()
+			.get_invoices("my-billing-group")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.invoices[0].currency == "AUD",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_assign_project() {
+		// env_logger::init();
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/project-assign/{project}",
+			billing_group = encode_param("my-billing-group"),
+			project = encode_param("my-project-name"),
+		);
+
+		let test_data = "";
+		let _m = testutil::create_mock_server(url, test_data, "POST");
+
+		match client
+			.billing_group()
+			.assign_project("my-billing-group", "my-project-name")
+			.await
+		{
+			Ok(_response) => assert!(true),
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_get_projects() {
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/projects",
+			billing_group = encode_param("my-billing-group"),
+		);
+
+		let test_data = testutil::get_test_data(
+			"tests/testdata/billing_group/billing_group_associated_projects.json",
+		);
+		let _m = testutil::create_mock_server(url, &test_data, "POST");
+
+		match client
+			.billing_group()
+			.get_associated_projects("my-billing-group")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.projects[0].available_credits == "32.5",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_assign_projects() {
+		// env_logger::init();
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/projects-assign",
+			billing_group = encode_param("my-billing-group"),
+		);
+
+		let test_data = "";
+		let _m = testutil::create_mock_server(url, test_data, "POST");
+
+		let projects = vec!["project1", "projec2"];
+		match client
+			.billing_group()
+			.assign_projects("my-billing-group", projects)
+			.await
+		{
+			Ok(_response) => {
+				assert!(true);
 			}
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}

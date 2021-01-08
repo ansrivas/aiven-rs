@@ -1,0 +1,14 @@
+{
+    "invoices": [
+        {
+            "currency": "AUD",
+            "download_cookie": "string",
+            "invoice_number": "string",
+            "period_begin": "string",
+            "period_end": "string",
+            "state": "string",
+            "total_inc_vat": "string",
+            "total_vat_zero": "string"
+        }
+    ]
+}
