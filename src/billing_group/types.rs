@@ -92,3 +92,20 @@ pub struct Credit {
 	#[serde(rename = "type")]
 	pub credit_type: String,
 }
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResponseEvents {
+	pub events: Vec<Event>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct Event {
+	pub actor: String,
+	pub billing_group_id: String,
+	pub create_time: String,
+	pub event_desc: String,
+	pub event_type: String,
+	pub log_entry_id: i64,
+	pub project_id: String,
+	pub project_name: String,
+}

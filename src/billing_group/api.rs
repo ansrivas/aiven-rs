@@ -26,6 +26,7 @@ use crate::{
 	errors::AivenError,
 	make_json_request, make_request,
 };
+use bytes::Bytes;
 use serde::Serialize;
 
 pub struct BillingGroupApi {
@@ -282,6 +283,84 @@ impl BillingGroupApi {
 		let response = make_json_request!(self, reqwest::Method::PUT, url, json_body)?;
 		Ok(response.json().await?)
 	}
+
+	/// List billing group events
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupEventList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	///
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .list_events("billing-group-id").await?;
+	/// # Ok(())
+	/// # }
+	/// ```
+	pub async fn list_events(
+		&self,
+		billing_group_id: &str,
+	) -> Result<types::ResponseEvents, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param(billing_group_id)
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// List billing group events
+	///
+	/// https://api.aiven.io/doc/#operation/BillingGroupEventList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	///
+	/// # #[tokio::main]
+	/// # async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// use std::collections::HashMap;
+	/// use tokio::fs::File;
+	/// use tokio::io::AsyncWriteExt;
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
+	///
+	/// let response = client
+	///         .billing_group()
+	///         .download_invoice("billing-group-id", "invoice-num", "download-cookie").await?;
+	/// let mut file = File::create("foo.pdf").await?;
+	/// file.write_all(&response[..]).await?;
+	/// file.sync_all().await?;
+	/// Ok(())
+	/// # }
+	/// ```
+	pub async fn download_invoice(
+		&self,
+		billing_group_id: &str,
+		invoice_number: &str,
+		download_cookie: &str,
+	) -> Result<Bytes, AivenError> {
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice/{invoice_number}/{download_cookie}",
+			billing_group = encode_param(billing_group_id),
+			invoice_number = encode_param(invoice_number),
+			download_cookie = encode_param(download_cookie)
+		);
+
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.bytes().await?)
+	}
 }
 
 #[cfg(test)]
@@ -469,6 +548,57 @@ mod tests {
 			Ok(response) => {
 				assert!(
 					response.billing_group.account_id == "unique-updated-account",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_list_events() {
+		let client = testutil::prepare_test_client();
+		let query_url = &format!(
+			"/billing-group/{billing_group}",
+			billing_group = encode_param("my-billing-group")
+		);
+
+		let test_data =
+			testutil::get_test_data("tests/testdata/billing_group/list_billing_group_events.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+
+		match client.billing_group().list_events("my-billing-group").await {
+			Ok(response) => {
+				assert!(
+					response.events[0].actor == "unique-actor",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_billing_group_download_invoice() {
+		let client = testutil::prepare_test_client();
+		let url = &format!(
+			"/billing-group/{billing_group}/invoice/{invoice_number}/{download_cookie}",
+			billing_group = encode_param("my-billing-group"),
+			invoice_number = encode_param("invoice-num"),
+			download_cookie = encode_param("download-cookie")
+		);
+
+		let test_data = "fake-invoice-data";
+		let _m = testutil::create_mock_server(url, &test_data, "GET");
+
+		match client
+			.billing_group()
+			.download_invoice("my-billing-group", "invoice-num", "download-cookie")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					&response[..] == b"fake-invoice-data",
 					format!("{:?}", response)
 				);
 			}

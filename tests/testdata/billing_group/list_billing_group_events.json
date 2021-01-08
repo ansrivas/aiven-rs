@@ -1,0 +1,12 @@
+{
+    "events": [{
+        "actor": "unique-actor",
+        "billing_group_id": "stringstringstringstringstringstring",
+        "create_time": "string",
+        "event_desc": "string",
+        "event_type": "string",
+        "log_entry_id": 0,
+        "project_id": "string",
+        "project_name": "string"
+    }]
+}
