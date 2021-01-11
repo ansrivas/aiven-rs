@@ -43,7 +43,9 @@ use reqwest::header::HeaderValue;
 // create!(self, MyClass) expands to :
 // MyClass::new(self.client.clone())
 macro_rules! create {
-	($sel:ident,$instance:ident) => {{ $instance::new($sel.client.clone()) }};
+	($sel:ident,$instance:ident) => {{
+		$instance::new($sel.client.clone())
+		}};
 }
 
 #[derive(Debug)]

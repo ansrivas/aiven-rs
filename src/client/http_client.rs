@@ -74,10 +74,10 @@ macro_rules! make_json_request {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
 			});
-		}
+			}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
 		ret
-	}};
+		}};
 }
 
 /// Make a http request without json body.
@@ -98,10 +98,10 @@ macro_rules! make_request {
 				errors: api_response.errors.unwrap(),
 				message: api_response.message.unwrap(),
 			});
-		}
+			}
 		let ret: Result<reqwest::Response, AivenError> = Ok(response);
 		ret
-	}};
+		}};
 }
 
 impl HTTPClient {
