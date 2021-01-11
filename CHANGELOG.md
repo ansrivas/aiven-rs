@@ -1,4 +1,8 @@
 
+## 0.4.1
+Changes
+- Integrate `tracing` as trace-provider
+
 ## 0.4.0
 Changes
 - Support billing_group apis
