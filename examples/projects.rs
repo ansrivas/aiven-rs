@@ -21,8 +21,8 @@
 // SOFTWARE.
 
 use aiven_rs::AivenClient;
-use tracing::info;
 use std::{collections::HashMap, env};
+use tracing::info;
 
 #[tokio::main]
 async fn main() {

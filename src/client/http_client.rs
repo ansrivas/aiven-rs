@@ -84,8 +84,8 @@ macro_rules! make_json_request {
 #[macro_export]
 macro_rules! make_request {
 	($sel:ident, $method:path, $url:expr) => {{
-		use tracing::debug;
 		use reqwest;
+		use tracing::debug;
 		let response: reqwest::Response = $sel.http_client.inner($method, $url)?.send().await?;
 		use crate::client::APIResponse;
 
