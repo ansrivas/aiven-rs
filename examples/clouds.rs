@@ -24,7 +24,7 @@ use aiven_rs::{cloud::types::ResClouds, AivenClient};
 
 #[tokio::main]
 async fn main() {
-	env_logger::init();
+	tracing_subscriber::fmt::init();
 
 	// use std::env;
 	// let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read

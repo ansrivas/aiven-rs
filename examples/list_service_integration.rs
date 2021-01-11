@@ -28,7 +28,7 @@ use std::env;
 
 fn main() -> Result<()> {
 	smol::block_on(Compat::new(async {
-		env_logger::init();
+		tracing_subscriber::fmt::init();
 
 		let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read AIVEN_TOKEN");
 		let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
