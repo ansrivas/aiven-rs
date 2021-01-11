@@ -21,12 +21,12 @@
 // SOFTWARE.
 
 use aiven_rs;
-use log::info;
+use tracing::info;
 use std::collections::HashMap;
 
 #[tokio::main]
 async fn main() {
-	env_logger::init();
+	tracing_subscriber::fmt::init();
 	let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
 	let mut json_body = HashMap::new();
 	json_body.insert("email", "someemail".to_owned());

@@ -27,7 +27,7 @@ use smol;
 
 fn main() -> Result<()> {
 	smol::block_on(Compat::new(async {
-		env_logger::init();
+		tracing_subscriber::fmt::init();
 
 		let client = AivenClient::new("https://api.aiven.io", "v1");
 		let cloud_api = client.cloud();

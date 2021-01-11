@@ -21,9 +21,10 @@
 // SOFTWARE.
 
 use crate::errors::AivenError;
-use log::debug;
+// use log::debug;
 use percent_encoding::{percent_encode, NON_ALPHANUMERIC};
 use serde::{Deserialize, Serialize};
+use tracing::debug;
 
 #[derive(Debug, Clone)]
 pub struct HTTPClient {
@@ -54,8 +55,8 @@ pub(crate) fn encode_param(param: &str) -> String {
 macro_rules! make_json_request {
 	($sel:ident, $method:path, $url:expr, $body:ident) => {{
 		use crate::{client::APIResponse, errors::AivenError};
-		use log::debug;
 		use reqwest;
+		use tracing::error;
 
 		let response: reqwest::Response = $sel
 			.http_client
@@ -66,8 +67,8 @@ macro_rules! make_json_request {
 		let status_code = &response.status().as_u16();
 
 		if !(*status_code >= 200 && *status_code < 300) {
-			debug!("status_code = {}", status_code);
-			debug!("url queried = {}", $url);
+			error!("status_code = {}", status_code);
+			error!("url queried = {}", $url);
 			let api_response: APIResponse = response.json().await?;
 			return Err(AivenError::APIResponseError {
 				errors: api_response.errors.unwrap(),
@@ -83,13 +84,13 @@ macro_rules! make_json_request {
 #[macro_export]
 macro_rules! make_request {
 	($sel:ident, $method:path, $url:expr) => {{
-		use log::debug;
+		use tracing::debug;
 		use reqwest;
 		let response: reqwest::Response = $sel.http_client.inner($method, $url)?.send().await?;
 		use crate::client::APIResponse;
 
 		let status_code = &response.status().as_u16();
-		debug!("Received status code: {}", status_code);
+		debug!("Received http status code: {}", status_code);
 
 		if !(*status_code >= 200 && *status_code < 300) {
 			let api_response: APIResponse = response.json().await?;
@@ -112,7 +113,7 @@ impl HTTPClient {
 			reqwest::Url::parse(&base_url.into()).expect("Failed to parse the base_url");
 
 		let ver = format!("{}/", version.replace("/", ""));
-		debug!("Version is {}", &ver);
+		debug!("API Version is {}", &ver);
 		HTTPClient {
 			base_url: parsed_url,
 			client,

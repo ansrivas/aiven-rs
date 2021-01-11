@@ -31,7 +31,7 @@ static TEST_AIVEN_CLIENT: OnceCell<AivenClient> = OnceCell::new();
 #[allow(dead_code)]
 pub(crate) fn prepare_test_client() -> &'static AivenClient {
 	TEST_AIVEN_CLIENT.get_or_init(|| {
-		env_logger::init();
+		tracing_subscriber::fmt::init();
 		let url = &mockito::server_url();
 		println!("Test client not found, recreating {:?}", &url);
 		let token = env::var("AIVEN_TOKEN").unwrap_or_else(|_| "abc".to_string());

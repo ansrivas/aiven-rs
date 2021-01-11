@@ -21,12 +21,12 @@
 // SOFTWARE.
 
 use aiven_rs::AivenClient;
-use log::info;
+use tracing::info;
 use std::{collections::HashMap, env};
 
 #[tokio::main]
 async fn main() {
-	env_logger::init();
+	tracing_subscriber::fmt::init();
 	let token = env::var("AIVEN_TOKEN").expect("Please set env variable to read AIVEN_TOKEN");
 	let client = AivenClient::from_token("https://api.aiven.io", "v1", &token);
 	let cloud = client.project();

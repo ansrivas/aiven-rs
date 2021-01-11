@@ -47,6 +47,10 @@ async fn main() {
   }
 }
 ```
+## Running the examples:
+```sh
+RUST_LOG=aiven_rs=debug cargo run --example clouds
+```
 ## License
 
 This project is licensed under
