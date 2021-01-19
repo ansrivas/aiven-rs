@@ -37,18 +37,6 @@ impl ServiceElastiSearchApi {
 		}
 	}
 
-	/// Describe something here...
-	///
-	/// # Arguments
-	///
-	/// * `Arg1` -
-	///
-	/// # Examples
-	/// Basic usage:
-	///
-	/// ```rust,no_run
-	/// // Your example here
-	/// ```
 	/// Delete an Elasticsearch index
 	///
 	/// https://api.aiven.io/doc/#operation/ServiceEsIndexDelete
