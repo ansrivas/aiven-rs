@@ -17,8 +17,6 @@ include = [
 ]
 
 [dependencies]
-openssl = { version = "0.10", features = ["vendored"], optional = true }
-
 tracing = "0.1"
 
 percent-encoding = "2.1.0"
@@ -38,7 +36,8 @@ mockito = {version = "0.29"}
 tracing-subscriber = {version = "0.2"} 
 
 [dependencies.reqwest]
-features = ["json"]
+default-features=false
+features = ["json", "rustls-tls"]
 version = "0.11"
 
 [dev-dependencies]
@@ -46,10 +45,6 @@ anyhow = "1.0"
 async-compat = "0.2.0"
 tokio = {version="1", features = ["full"]}
 smol = "1.2.5"
-
-[features]
-static=["openssl"]
- 
 
 [lib]
 name = "aiven_rs"
