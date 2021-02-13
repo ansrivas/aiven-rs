@@ -35,6 +35,15 @@ once_cell= {version = "1.5"}
 mockito = {version = "0.29"}
 tracing-subscriber = {version = "0.2"} 
 
+## Args parser
+structopt = "0.3"
+argh = "0.1.4"
+
+async-compat = "0.2"
+smol = "1.2.5"
+anyhow = "1.0"
+comfy-table = "1.3.0"
+
 [dependencies.reqwest]
 default-features=false
 features = ["json", "rustls-tls"]
@@ -49,6 +58,10 @@ smol = "1.2.5"
 [lib]
 name = "aiven_rs"
 path = "src/lib.rs"
+
+[[bin]]
+name = "avn-rs"
+path = "src/cmd/main.rs"
 
 # https://deterministic.space/high-performance-rust.html
 [profile.release]

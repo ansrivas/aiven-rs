@@ -20,18 +20,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-use serde::{Deserialize, Serialize};
+use comfy_table::presets::UTF8_FULL;
+use comfy_table::*;
 
-#[derive(Deserialize, Serialize, Debug, Default)]
-pub struct ResClouds {
-	pub clouds: Vec<Cloud>,
-}
+pub fn print_table(header: Vec<&str>, rows: Vec<Row>) {
+	// This part now can be extracted out
+	let mut table = Table::new();
+	table
+		.set_style(TableComponent::HeaderLines, ' ')
+		.set_style(TableComponent::HorizontalLines, ' ')
+		.set_style(TableComponent::VerticalLines, ' ')
+		.load_preset(UTF8_FULL)
+		.set_content_arrangement(ContentArrangement::Dynamic)
+		.set_header(header);
 
-#[derive(Deserialize, Serialize, Debug, Default)]
-pub struct Cloud {
-	pub cloud_description: String,
-	pub cloud_name: String,
-	pub geo_region: String,
-	pub geo_latitude: f32,
-	pub geo_longitude: f32,
+	for row in rows {
+		table.add_row(row);
+	}
+	println!("{}", table);
 }
