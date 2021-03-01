@@ -942,6 +942,40 @@ impl ServiceApi {
 		Ok(response.json().await?)
 	}
 
+	/// Get migration status
+	///
+	/// https://api.aiven.io/doc/#operation/ServiceGetMigrationStatus
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "token");
+	/// let response = client
+	///         .service()
+	///         .get_migration_status("my-project", "my-service-name")
+	///         .await?;
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn get_migration_status(
+		&self,
+		project: &str,
+		service_name: &str,
+	) -> Result<ResMigrationStatus, AivenError> {
+		let url = format!(
+			"project/{project}/service/{service_name}/migration",
+			project = encode_param(project),
+			service_name = encode_param(service_name),
+		);
+		Ok(make_request!(self, reqwest::Method::GET, &url)?
+			.json()
+			.await?)
+	}
+
 	/// Update service configuration
 	///
 	/// https://api.aiven.io/doc/#operation/ServiceUpdate
@@ -1603,6 +1637,28 @@ mod tests {
 			Ok(response) => {
 				assert!(
 					response.service.cloud_name == "aws-eu-central-1",
+					format!("{:?}", response)
+				);
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
+	#[tokio::test]
+	async fn test_service_get_migration_status() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/project/myproject/service/myservice/migration";
+		let test_data =
+			testutil::get_test_data("tests/testdata/service/service/get_migration_status.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+		match client
+			.service()
+			.get_migration_status("myproject", "myservice")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.migration.status == "string",
 					format!("{:?}", response)
 				);
 			}
