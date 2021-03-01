@@ -1,0 +1,16 @@
+{
+  "message": "string",
+  "migration": {
+    "error": "string",
+    "method": "string",
+    "status": "string"
+  },
+  "migration_detail": [
+    {
+      "dbname": "string",
+      "error": "string",
+      "method": "string",
+      "status": "done"
+    }
+  ]
+}

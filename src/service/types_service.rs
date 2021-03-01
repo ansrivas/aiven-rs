@@ -191,6 +191,26 @@ pub struct ResService {
 }
 
 #[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResMigrationStatus {
+	pub migration: MigrationStatus,
+	pub migration_detail: Vec<MigrationDetail>,
+}
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct MigrationStatus {
+	pub error: String,
+	pub method: String,
+	pub status: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct MigrationDetail {
+	pub dbname: String,
+	pub error: String,
+	pub method: String,
+	pub status: String,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
 pub struct ServiceCancelQuery {
 	pub success: bool,
 }
