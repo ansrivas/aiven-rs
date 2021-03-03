@@ -576,6 +576,32 @@ impl ServiceApi {
 			.json()
 			.await?)
 	}
+	/// List service versions
+	///
+	/// https://api.aiven.io/doc/#operation/ListServiceVersions
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// use serde_json::json;
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "some-token");
+	/// let response = client
+	///         .service()
+	///         .list_service_versions()
+	///         .await?;
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn list_service_versions(&self) -> Result<ResServiceVersions, AivenError> {
+		let url = "service_versions";
+		Ok(make_request!(self, reqwest::Method::GET, url)?
+			.json()
+			.await?)
+	}
+
 	/// List service types for a project
 	///
 	/// https://api.aiven.io/doc/#operation/ListProjectServiceTypes
@@ -1419,6 +1445,24 @@ mod tests {
 			Err(e) => assert!(false, format!("{:?}", e)),
 		}
 	}
+
+	#[tokio::test]
+	async fn test_service_list_service_versions() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/service_versions";
+		let test_data = testutil::get_test_data(
+			"tests/testdata/service/service/list_service_versions_project.json",
+		);
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+
+		match client.service().list_service_versions().await {
+			Ok(response) => {
+				assert!(response.service_versions[0].aiven_end_of_life_time == "string");
+			}
+			Err(e) => assert!(false, format!("{:?}", e)),
+		}
+	}
+
 	#[tokio::test]
 	async fn test_service_list_public_service_types() {
 		let client = testutil::prepare_test_client();
