@@ -1,5 +1,10 @@
 
-## 0.4.1
+## [unreleased] 0.5.0
+Changes
+- service: get_service_versions 
+- service: get_migration_status 
+ 
+## [2021-01-11] 0.4.1
 Changes
 - Integrate `tracing` as trace-provider
 
