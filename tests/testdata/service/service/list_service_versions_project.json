@@ -1,0 +1,17 @@
+{
+"service_versions": 
+[
+        {
+            "aiven_end_of_life_time": "string",
+            "availability_end_time": "string",
+            "availability_start_time": "string",
+            "end_of_life_help_article_url": "string",
+            "major_version": "string",
+            "service_type": "string",
+            "state": "available",
+            "termination_time": "string",
+            "upstream_end_of_life_time": "string"
+        }
+    ]
+
+}

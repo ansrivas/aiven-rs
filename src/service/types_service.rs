@@ -279,6 +279,25 @@ pub struct UserConfigSchema {
 pub struct ResServiceTypes {
 	pub service_types: HashMap<String, ServiceDescription>,
 }
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResServiceVersions {
+	pub service_versions: Vec<ServiceVersions>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ServiceVersions {
+	pub aiven_end_of_life_time: String,
+	pub availability_end_time: String,
+	pub availability_start_time: String,
+	pub end_of_life_help_article_url: String,
+	pub major_version: String,
+	pub service_type: String,
+	pub state: String,
+	pub termination_time: String,
+	pub upstream_end_of_life_time: String,
+}
+
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct DatabaseName {
 	pub database_name: String,
