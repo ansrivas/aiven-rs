@@ -20,14 +20,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+use crate::user::types::*;
 use crate::{
 	client::{encode_param, HTTPClient},
 	errors::AivenError,
 	make_json_request, make_request,
 };
-
-use crate::user::types::*;
 use serde::Serialize;
+use serde_json::json;
 use std::collections::HashMap;
 pub struct UserApi {
 	http_client: HTTPClient,
@@ -526,6 +526,40 @@ impl UserApi {
 		let response = make_json_request!(self, reqwest::Method::PUT, url, body)?;
 		Ok(response.json().await?)
 	}
+
+	/// Accept all invites for a single account.
+	///
+	/// https://api.aiven.io/doc/#operation/UserAccountInvitesAccept
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let response = client
+	///         .user()
+	///         .accept_all_invites_for_account("account_id", "team_id")
+	///         .await
+	///         .unwrap();
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn accept_all_invites_for_account(
+		&self,
+		account_id: &str,
+		team_id: &str,
+	) -> Result<ResAccountInvites, AivenError> {
+		let url = "/me/account/invites/accept";
+		let body = &json!({
+			"account_id": account_id,
+			"team_id": team_id,
+		});
+
+		let response = make_json_request!(self, reqwest::Method::POST, url, body)?;
+		Ok(response.json().await?)
+	}
 }
 
 #[cfg(test)]
@@ -871,6 +905,29 @@ mod tests {
 			.await
 		{
 			Ok(_) => assert!(true),
+			Err(e) => {
+				assert!(false, "Error was {:?}", e);
+			}
+		}
+	}
+
+	#[tokio::test]
+	async fn test_user_accept_all_invites_for_account() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/me/account/invites/accept";
+		let test_data =
+			testutil::get_test_data("tests/testdata/user/accept_all_invites_for_account.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
+
+		let user_client = client.user();
+		match user_client
+			.accept_all_invites_for_account("account_id", "team_id")
+			.await
+		{
+			Ok(rep) => {
+				assert!(rep.account_invites.len() > 0);
+				assert!(true)
+			}
 			Err(e) => {
 				assert!(false, "Error was {:?}", e);
 			}
