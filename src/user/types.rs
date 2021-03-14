@@ -169,3 +169,17 @@ pub struct UserCreateConfig {
 	pub real_name: String,
 	pub token: String,
 }
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct AccountInvite {
+	account_id: String,
+	account_name: String,
+	create_time: String,
+	invited_by_user_email: String,
+	team_id: String,
+	team_name: String,
+	user_email: String,
+}
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResAccountInvites {
+	pub account_invites: Vec<AccountInvite>,
+}
