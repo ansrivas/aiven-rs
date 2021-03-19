@@ -32,7 +32,7 @@ bytes= "1.0"
 serde_bytes = "0.11"
 
 once_cell= {version = "1.5"}
-mockito = {version = "0.29"}
+mockito = {version = "0.30"}
 tracing-subscriber = {version = "0.2"} 
 
 [dependencies.reqwest]
