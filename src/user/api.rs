@@ -527,6 +527,75 @@ impl UserApi {
 		Ok(response.json().await?)
 	}
 
+	/// Check password strength for an existing user.
+	///
+	/// https://api.aiven.io/doc/#operation/CheckPasswordStrengthExistingUser
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let response = client
+	///         .user()
+	///         .check_password_strength_existing_user("new_pass", "old_pass")
+	///         .await
+	///         .unwrap();
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn check_password_strength_existing_user(
+		&self,
+		new_password: &str,
+		old_password: &str,
+	) -> Result<ResCheckPasswordStrength, AivenError> {
+		let url = "/me/password_strength";
+		let mut json_body: HashMap<&str, String> = HashMap::new();
+		json_body.insert("new_password", new_password.into());
+		json_body.insert("old_password", old_password.into());
+		let body = &json_body;
+
+		let response = make_json_request!(self, reqwest::Method::POST, url, body)?;
+		Ok(response.json().await?)
+	}
+
+	/// Check password strength for a new user.
+	///
+	/// https://api.aiven.io/doc/#operation/CheckPasswordStrengthNewUser
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let response = client
+	///         .user()
+	///         .check_password_strength_new_user("email", "password", "real_name")
+	///         .await
+	///         .unwrap();
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn check_password_strength_new_user(
+		&self,
+		email: &str,
+		password: &str,
+		real_name: &str,
+	) -> Result<ResCheckPasswordStrength, AivenError> {
+		let url = "/me/password_strength";
+		let body = &json!({
+			"email": email,
+			"password": password,
+			"real_name": real_name,
+		});
+		let response = make_json_request!(self, reqwest::Method::POST, url, body)?;
+		Ok(response.json().await?)
+	}
+
 	/// Accept all invites for a single account.
 	///
 	/// https://api.aiven.io/doc/#operation/UserAccountInvitesAccept
@@ -911,6 +980,52 @@ mod tests {
 		}
 	}
 
+	#[tokio::test]
+	async fn test_user_check_password_strength_existing_user() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/me/password_strength";
+		let test_data = testutil::get_test_data(
+			"tests/testdata/user/check_password_strength_existing_user.json",
+		);
+		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
+
+		let user_client = client.user();
+		match user_client
+			.check_password_strength_existing_user("new_pass", "old_pass")
+			.await
+		{
+			Ok(response) => {
+				assert!(response.password_strength.score == 0)
+			}
+			Err(e) => {
+				assert!(false, "Error was {:?}", e);
+			}
+		}
+	}
+	#[tokio::test]
+	async fn test_user_check_password_strength_new_user() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/me/password_strength";
+		let test_data =
+			testutil::get_test_data("tests/testdata/user/check_password_strength_new_user.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
+
+		let user_client = client.user();
+		match user_client
+			.check_password_strength_new_user("email", "password", "real_name")
+			.await
+		{
+			Ok(response) => {
+				assert!(
+					response.password_strength.score == 3,
+					format!("found response {:?}", response)
+				)
+			}
+			Err(e) => {
+				assert!(false, "Error was {:?}", e);
+			}
+		}
+	}
 	#[tokio::test]
 	async fn test_user_accept_all_invites_for_account() {
 		let client = testutil::prepare_test_client();

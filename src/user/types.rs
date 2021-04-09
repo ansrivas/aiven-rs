@@ -22,6 +22,19 @@
 
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct ResCheckPasswordStrength {
+	pub password_strength: PasswordStrength,
+}
+
+#[derive(Deserialize, Serialize, Debug, Default)]
+pub struct PasswordStrength {
+	pub is_acceptable: bool,
+	pub message: String,
+	pub score: i32,
+}
+
 #[derive(Deserialize, Serialize, Debug, Default)]
 pub struct UserAuth {
 	pub state: String,
