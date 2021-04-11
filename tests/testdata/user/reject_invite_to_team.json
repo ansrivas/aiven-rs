@@ -1,0 +1,18 @@
+{
+
+    "account_invites": 
+
+[
+
+    {
+        "account_id": "string",
+        "account_name": "string",
+        "create_time": "string",
+        "invited_by_user_email": "string",
+        "team_id": "string",
+        "team_name": "string",
+        "user_email": "string"
+    }
+
+]
+}
