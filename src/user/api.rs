@@ -629,6 +629,56 @@ impl UserApi {
 		let response = make_json_request!(self, reqwest::Method::POST, url, body)?;
 		Ok(response.json().await?)
 	}
+
+	/// List pending account invites.
+	///
+	/// https://api.aiven.io/doc/#operation/UserAccountInvitesList
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let response = client
+	///         .user()
+	///         .list_pending_account_invites()
+	///         .await
+	///         .unwrap();
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn list_pending_account_invites(&self) -> Result<ResAccountInvites, AivenError> {
+		let url = "/me/account/invites";
+		let response = make_request!(self, reqwest::Method::GET, url)?;
+		Ok(response.json().await?)
+	}
+
+	/// Reject invite to a team.
+	///
+	/// https://api.aiven.io/doc/#operation/UserAccountInvitesReject
+	///
+	/// # Examples
+	/// Basic usage:
+	///
+	/// ```rust,no_run
+	/// #[tokio::main]
+	/// async fn main()-> Result<(), Box<dyn std::error::Error>>{
+	/// let client = aiven_rs::AivenClient::new("https://api.aiven.io", "v1");
+	/// let response = client
+	///         .user()
+	///         .reject_invite_to_team()
+	///         .await
+	///         .unwrap();
+	/// Ok(())
+	/// }
+	/// ```
+	pub async fn reject_invite_to_team(&self) -> Result<ResAccountInvites, AivenError> {
+		let url = "/me/account/invites/reject";
+		let response = make_request!(self, reqwest::Method::POST, url)?;
+		Ok(response.json().await?)
+	}
 }
 
 #[cfg(test)]
@@ -1039,6 +1089,45 @@ mod tests {
 			.accept_all_invites_for_account("account_id", "team_id")
 			.await
 		{
+			Ok(rep) => {
+				assert!(rep.account_invites.len() > 0);
+				assert!(true)
+			}
+			Err(e) => {
+				assert!(false, "Error was {:?}", e);
+			}
+		}
+	}
+
+	#[tokio::test]
+	async fn test_user_list_pending_account_invites() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/me/account/invites";
+		let test_data =
+			testutil::get_test_data("tests/testdata/user/list_pending_account_invites.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "GET");
+
+		let user_client = client.user();
+		match user_client.list_pending_account_invites().await {
+			Ok(rep) => {
+				assert!(rep.account_invites.len() > 0);
+				assert!(true)
+			}
+			Err(e) => {
+				assert!(false, "Error was {:?}", e);
+			}
+		}
+	}
+
+	#[tokio::test]
+	async fn test_user_reject_invite_to_team() {
+		let client = testutil::prepare_test_client();
+		let query_url = "/me/account/invites/reject";
+		let test_data = testutil::get_test_data("tests/testdata/user/reject_invite_to_team.json");
+		let _m = testutil::create_mock_server(query_url, &test_data, "POST");
+
+		let user_client = client.user();
+		match user_client.reject_invite_to_team().await {
 			Ok(rep) => {
 				assert!(rep.account_invites.len() > 0);
 				assert!(true)
