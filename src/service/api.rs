@@ -179,6 +179,7 @@ impl ServiceApi {
 	/// let client = aiven_rs::AivenClient::from_token("https://api.aiven.io", "v1", "aiven-token");
 	/// let mut json_body = HashMap::new();
 	/// json_body.insert("target_version", "10");
+	/// // task_type can be upgrade_check, migration_check etc.
 	/// json_body.insert("task_type", "upgrade_check");
 	/// let response = client
 	///    .service()
