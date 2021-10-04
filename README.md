@@ -5,7 +5,7 @@
 
 <div style="display: flex; justify-content: center;">
   <a href="https://www.rust-lang.org/"><img style="width:40%;" src="assets/rust.png" alt="rust" border="0" /></a>
-  <a href="https://aiven.io/"><img style="width:75%;" src="assets/aiven.png" alt="aiven" border="0" /></a>
+  <a href="https://aiven.io/"><img style="width:33%;" src="assets/aiven.png" alt="aiven" border="0" /></a>
 </div>
 
 ![Linux](https://github.com/ansrivas/aiven-rs/workflows/Linux/badge.svg)
