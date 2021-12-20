@@ -105,14 +105,15 @@ macro_rules! make_request {
 }
 
 impl HTTPClient {
-	pub fn new<S>(base_url: S, client: reqwest::Client, version: String) -> HTTPClient
+	pub fn new<S, T>(base_url: S, client: reqwest::Client, version: T) -> HTTPClient
 	where
 		S: Into<String>,
+		T: Into<String>,
 	{
 		let parsed_url =
 			reqwest::Url::parse(&base_url.into()).expect("Failed to parse the base_url");
 
-		let ver = format!("{}/", version.replace("/", ""));
+		let ver = format!("{}/", version.into().replace("/", ""));
 		debug!("API Version is {}", &ver);
 		HTTPClient {
 			base_url: parsed_url,

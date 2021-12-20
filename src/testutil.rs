@@ -32,20 +32,20 @@ static TEST_AIVEN_CLIENT: OnceCell<AivenClient> = OnceCell::new();
 pub(crate) fn prepare_test_client() -> &'static AivenClient {
 	TEST_AIVEN_CLIENT.get_or_init(|| {
 		tracing_subscriber::fmt::init();
-		let url = &mockito::server_url();
+		let url = mockito::server_url();
 		println!("Test client not found, recreating {:?}", &url);
 		let token = env::var("AIVEN_TOKEN").unwrap_or_else(|_| "abc".to_string());
-		AivenClient::from_token(url.as_ref(), "", &token)
+		AivenClient::from_token(url, "", &token)
 	})
 }
 
 #[allow(dead_code)]
 pub(crate) fn client() -> &'static AivenClient {
 	TEST_AIVEN_CLIENT.get_or_init(|| {
-		let url = &mockito::server_url();
+		let url = mockito::server_url();
 		println!("Test client not found, recreating {:?}", &url);
 		let token = env::var("AIVEN_TOKEN").unwrap_or_else(|_| "abc".to_string());
-		AivenClient::from_token(url.as_ref(), "", &token)
+		AivenClient::from_token(url, "", &token)
 		// let token = env::var("AIVEN_TOKEN").expect("Please set env variable
 		// to read AIVEN_TOKEN"); AivenClient::from_token("https://api.aiven.io", "v1", &token)
 	})
