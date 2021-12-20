@@ -54,10 +54,7 @@ pub struct AivenClient {
 }
 
 impl AivenClient {
-	fn inner_client<T>(base_url: T, token: Option<T>, version: T) -> AivenClient
-	where
-		T: Into<String>,
-	{
+	fn inner_client(base_url: &str, token: Option<&str>, version: &str) -> AivenClient {
 		let mut headers = reqwest::header::HeaderMap::new();
 		headers.insert(
 			"content-type",
@@ -66,7 +63,7 @@ impl AivenClient {
 		if let Some(t) = token {
 			headers.insert(
 				"authorization",
-				HeaderValue::from_str(&format!("aivenv1 {}", &t.into())).unwrap(),
+				HeaderValue::from_str(&format!("aivenv1 {}", t)).unwrap(),
 			);
 		}
 
@@ -77,7 +74,7 @@ impl AivenClient {
 			.unwrap();
 
 		AivenClient {
-			client: HTTPClient::new(base_url.into(), client, version.into()),
+			client: HTTPClient::new(base_url, client, version),
 		}
 	}
 
@@ -96,11 +93,12 @@ impl AivenClient {
 	/// Ok(())
 	/// }
 	/// ```
-	pub fn new<T>(base_url: T, version: T) -> AivenClient
+	pub fn new<T, U>(base_url: T, version: U) -> AivenClient
 	where
 		T: Into<String>,
+		U: Into<String>,
 	{
-		AivenClient::inner_client(base_url, None, version)
+		AivenClient::inner_client(&base_url.into(), None, &version.into())
 	}
 
 	/// Create a new basic client with url, version and token.
@@ -118,11 +116,13 @@ impl AivenClient {
 	/// Ok(())
 	/// }
 	/// ```
-	pub fn from_token<T>(base_url: T, version: T, token: T) -> AivenClient
+	pub fn from_token<T, U, V>(base_url: T, version: U, token: V) -> AivenClient
 	where
 		T: Into<String>,
+		U: Into<String>,
+		V: Into<String>,
 	{
-		AivenClient::inner_client(base_url, Some(token), version)
+		AivenClient::inner_client(&base_url.into(), Some(&token.into()), &version.into())
 	}
 
 	/// Access all the cloud APIs
