@@ -31,7 +31,7 @@ url = "2.1"
 
 serde_bytes = "0.11"
 
-mockito = {version = "0.31"}
+mockito = {version = "1.0"}
 once_cell = {version = "1.9"}
 tracing-subscriber = {version = "0.3"}
 
